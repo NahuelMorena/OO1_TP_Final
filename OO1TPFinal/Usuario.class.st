@@ -6,7 +6,8 @@ Class {
 		'dni',
 		'telefono',
 		'legajo',
-		'email'
+		'email',
+		'id'
 	],
 	#category : #'OO1TPFinal-model'
 }
@@ -19,6 +20,12 @@ Usuario class >> unNombre: unNombre dni: unDni telefono: unTelefono email: unEma
 		telefono: unTelefono
 		email: unEmail
 		legajo: unLegajo
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> identificar: numIdent [
+	(self numIdentidad == numIdent ) ifTrue: [^true.].
+	^false.
 ]
 
 { #category : #accessing }
@@ -39,4 +46,9 @@ Usuario >> nombre: unNombre dni: unDni telefono: unTelefono email: unEmail legaj
 	telefono := unTelefono.
 	email := unEmail.
 	legajo := unLegajo
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> numIdentidad [
+	^id
 ]

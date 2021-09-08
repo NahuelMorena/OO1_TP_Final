@@ -5,7 +5,13 @@ Class {
 		'mes',
 		'monto',
 		'comision',
-		'organizacion'
+		'organizacion',
+		'donador'
 	],
 	#category : #'OO1TPFinal-model'
 }
+
+{ #category : #accessing }
+Donacion >> donador [
+	^donador
+]
