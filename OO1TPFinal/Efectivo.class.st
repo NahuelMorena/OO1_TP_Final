@@ -3,3 +3,13 @@ Class {
 	#superclass : #Donacion,
 	#category : #'OO1TPFinal-model'
 }
+
+{ #category : #'as yet unclassified' }
+Efectivo class >> mes: unMes organizacion: unaOrganizacion donante: unDonante [
+	super mes: unMes organizacion: unaOrganizacion donante: unDonante. 
+]
+
+{ #category : #'as yet unclassified' }
+Efectivo >> pagoConComision: unMonto [
+	self monto: unMonto
+]

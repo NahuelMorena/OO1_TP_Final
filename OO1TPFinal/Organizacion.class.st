@@ -32,6 +32,11 @@ Organizacion >> denominacion: unaDenominacion representante: unRepresentante dir
 	direccion := unaDireccion.
 ]
 
+{ #category : #accessing }
+Organizacion >> donaciones [
+	^donaciones
+]
+
 { #category : #initialization }
 Organizacion >> initialize [ 
 	integrantes := OrderedCollection new.
@@ -42,4 +47,9 @@ Organizacion >> initialize [
 { #category : #accessing }
 Organizacion >> integrantes [
 	^integrantes 
+]
+
+{ #category : #accessing }
+Organizacion >> recibirDonacion: unaDonacion [ 
+	self donaciones add: unaDonacion.
 ]

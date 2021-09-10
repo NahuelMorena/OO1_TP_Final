@@ -46,23 +46,18 @@ Sistema >> organizaciones [
 ]
 
 { #category : #'as yet unclassified' }
-Sistema >> realizarDonacion: nroDonante en: unaOrganizacion el: unMes [
-	(self usuarios select: [ :each | each identificar: nroDonante ]) 
+Sistema >> realizarDonacionEfectivo: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
+	unaOrganizacion recibirDonacion: (Efectivo mes: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #'as yet unclassified' }
-Sistema >> realizarDonacionEfectivo: nroDonante [
-	self buscarDonantePorNumerodeDonante: nroDonante
+Sistema >> realizarDonacionPagoFacil: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
+	unaOrganizacion recibirDonacion: (PagoFacil  mes: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #'as yet unclassified' }
-Sistema >> realizarDonacionPagoFacil: nroDonante [
-	self buscarDonantePorNumerodeDonante: nroDonante
-]
-
-{ #category : #'as yet unclassified' }
-Sistema >> realizarDonacionTransferenciaBancaria: nroDonante [
-	self buscarDonantePorNumerodeDonante: nroDonante
+Sistema >> realizarDonacionTransferenciaBancaria: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
+	unaOrganizacion recibirDonacion: (TransfBancaria mes: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #accessing }
