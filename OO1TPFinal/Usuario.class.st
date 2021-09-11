@@ -18,7 +18,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 Usuario class >> darIdentificador [
-	^ids := ids + 1 
+	^(ids := ids + 1) 
 ]
 
 { #category : #'class initialization' }
@@ -39,8 +39,7 @@ Usuario class >> unNombre: unNombre dni: unDni telefono: unTelefono email: unEma
 
 { #category : #'as yet unclassified' }
 Usuario >> identificar: numIdent [
-	(self obtenerIdentificacion == numIdent ) ifTrue: [^true.].
-	^false.
+	^(self obtenerIdentificacion == numIdent )
 ]
 
 { #category : #accessing }

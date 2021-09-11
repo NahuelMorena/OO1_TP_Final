@@ -51,7 +51,7 @@ Organizacion >> integrantes [
 
 { #category : #'as yet unclassified' }
 Organizacion >> obtenerDonacionesDeEsteMes [
-	self donaciones select: [ :each | (each fecha <= Date today) & (Date today monthIndex == each mes)]	
+	^self donaciones select: [ :each | (each fecha <= Date today) & (Date today monthIndex == each mes)]	
 ]
 
 { #category : #'as yet unclassified' }

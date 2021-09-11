@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-TransfBancaria class >> mes: unMes organizacion: unaOrganizacion donante: unDonante [
-	super mes: unMes organizacion: unaOrganizacion donante: unDonante. 
+TransfBancaria class >> mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante [
+	super mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante. 
 ]
 
 { #category : #'as yet unclassified' }

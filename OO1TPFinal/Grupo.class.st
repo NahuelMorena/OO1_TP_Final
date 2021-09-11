@@ -22,13 +22,13 @@ Grupo >> aceptarPropuestaDeOrganizacion: unaOrganizacion [
 
 { #category : #'as yet unclassified' }
 Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direccion: unaDireccion [ 
-	^self propuestas add: (Organizacion denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion)
+	self propuestas add: (Organizacion denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion)
 	
 ]
 
 { #category : #'as yet unclassified' }
 Grupo >> cargarMonto: unMonto [
-	^recaudacion := recaudacion + unMonto.
+	^(recaudacion:= recaudacion + unMonto).
 ]
 
 { #category : #initialization }

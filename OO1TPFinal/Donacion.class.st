@@ -2,16 +2,21 @@ Class {
 	#name : #Donacion,
 	#superclass : #Object,
 	#instVars : [
-		'mes',
+		'mesDelPago',
 		'monto',
 		'comision',
 		'organizacion',
 		'donador',
-		'hora',
 		'fecha'
 	],
 	#category : #'OO1TPFinal-model'
 }
+
+{ #category : #accessing }
+Donacion >> actualYear [
+	^(Date today year == self fecha year)
+	
+]
 
 { #category : #accessing }
 Donacion >> comision: unaComision [
@@ -31,17 +36,16 @@ Donacion >> fecha [
 { #category : #initialization }
 Donacion >> initialize [
 	fecha := Date today.
-	hora := Time now.
 ]
 
 { #category : #accessing }
 Donacion >> mes [
-	^mes
+	^mesDelPago.
 ]
 
 { #category : #'as yet unclassified' }
-Donacion >> mes: unMes organizacion: unaOrganizacion donante: unDonante [
-	mes:= unMes.
+Donacion >> mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante [
+	mesDelPago:= unMes.
 	organizacion:= unaOrganizacion.
 	donador:= unDonante.
 ]

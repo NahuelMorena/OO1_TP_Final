@@ -24,7 +24,7 @@ Sistema >> altaOrganizacion: unaDenominacion representante: unRepresentante dire
 
 { #category : #'as yet unclassified' }
 Sistema >> buscarDonacionesPorUsuario: unUsuario [
-	^self donaciones select: [ :each | each donador == unUsuario ]
+	^self donaciones select: [ :each | each donador == unUsuario & ( each actualYear)]
 ]
 
 { #category : #'as yet unclassified' }
@@ -55,17 +55,17 @@ Sistema >> initialize [
 
 { #category : #'as yet unclassified' }
 Sistema >> realizarDonacionEfectivo: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (Efectivo mes: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (Efectivo mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #'as yet unclassified' }
 Sistema >> realizarDonacionPagoFacil: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (PagoFacil  mes: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (PagoFacil  mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #'as yet unclassified' }
 Sistema >> realizarDonacionTransferenciaBancaria: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (TransfBancaria mes: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (TransfBancaria mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #accessing }
