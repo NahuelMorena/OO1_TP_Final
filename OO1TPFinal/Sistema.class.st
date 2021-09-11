@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'usuarios',
-		'organizaciones',
+		'grupos',
 		'donaciones'
 	],
 	#category : #'OO1TPFinal-model'
@@ -15,8 +15,8 @@ Sistema >> altaDonante: unNombre dni: unDni telefono: unTelefono email: unEmail 
 ]
 
 { #category : #'as yet unclassified' }
-Sistema >> altaOrganizacion: unaDenominacion representante: unRepresentante direccion: unaDireccion [ 
-	^self organizaciones add: (Organizacion denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion)
+Sistema >> altaOrganizacion: unaDenominacion representante: unRepresentante direccion: unaDireccion enGrupo: unGrupo [
+	^((self grupos select: [ :each | each == unGrupo ]) altaOrganizacion: unaDenominacion representante: unRepresentante direccion: unaDireccion).  
 ]
 
 { #category : #'as yet unclassified' }
@@ -34,15 +34,15 @@ Sistema >> donaciones [
 	^donaciones
 ]
 
+{ #category : #accessing }
+Sistema >> grupos [
+	^grupos
+]
+
 { #category : #initialization }
 Sistema >> initialize [
 	usuarios := OrderedCollection new.
-	organizaciones := OrderedCollection new.
-]
-
-{ #category : #accessing }
-Sistema >> organizaciones [
-	^organizaciones 
+	grupos := OrderedCollection new.
 ]
 
 { #category : #'as yet unclassified' }

@@ -6,7 +6,8 @@ Class {
 		'monto',
 		'comision',
 		'organizacion',
-		'donador'
+		'donador',
+		'fechaYHora'
 	],
 	#category : #'OO1TPFinal-model'
 }
@@ -14,6 +15,11 @@ Class {
 { #category : #accessing }
 Donacion >> donador [
 	^donador
+]
+
+{ #category : #initialization }
+Donacion >> initialize [
+	fechaYHora := DateAndTime now.
 ]
 
 { #category : #'as yet unclassified' }

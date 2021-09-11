@@ -7,7 +7,8 @@ Class {
 		'telefono',
 		'legajo',
 		'email',
-		'id'
+		'id',
+		'grupo'
 	],
 	#category : #'OO1TPFinal-model'
 }
