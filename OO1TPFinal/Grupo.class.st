@@ -5,7 +5,10 @@ Class {
 		'organizaciones',
 		'propuestas',
 		'coordinadores',
-		'integrantes'
+		'integrantes',
+		'pozoComun',
+		'recaudacion',
+		'objetivoPozo'
 	],
 	#category : #'OO1TPFinal-model'
 }
@@ -23,12 +26,22 @@ Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direcc
 	
 ]
 
+{ #category : #'as yet unclassified' }
+Grupo >> cargarMonto: unMonto [
+	^recaudacion := recaudacion + unMonto.
+]
+
 { #category : #initialization }
 Grupo >> initialize [
 	propuestas := OrderedCollection new.
 	organizaciones := OrderedCollection new.
 	coordinadores := OrderedCollection new. 
 	integrantes := OrderedCollection new.
+]
+
+{ #category : #accessing }
+Grupo >> objetivoPozo [
+	^objetivoPozo.
 ]
 
 { #category : #initialization }
@@ -39,4 +52,15 @@ Grupo >> organizaciones [
 { #category : #initialization }
 Grupo >> propuestas [
 	^propuestas
+]
+
+{ #category : #'as yet unclassified' }
+Grupo >> recibirColaboracion: unMonto [
+	((self cargarMonto: unMonto) >= self objetivoPozo) ifTrue: [ pozoComun := false ]
+]
+
+{ #category : #initialization }
+Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
+	pozoComun:= true.
+	objetivoPozo := montoObjetivo
 ]
