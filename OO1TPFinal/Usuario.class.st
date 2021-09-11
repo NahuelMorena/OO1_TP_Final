@@ -65,5 +65,5 @@ Usuario >> nombre: unNombre dni: unDni telefono: unTelefono email: unEmail legaj
 
 { #category : #'as yet unclassified' }
 Usuario >> obtenerIdentificacion [
-	^id
+	^ id
 ]
