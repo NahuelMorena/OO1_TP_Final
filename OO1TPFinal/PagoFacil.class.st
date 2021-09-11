@@ -11,5 +11,6 @@ PagoFacil class >> mes: unMes organizacion: unaOrganizacion donante: unDonante [
 
 { #category : #'as yet unclassified' }
 PagoFacil >> pagoConComision: unMonto [
-	self monto: unMonto * 1.15
+	self monto: unMonto.
+	self comision: (unMonto * 1.15) - unMonto.
 ]

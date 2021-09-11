@@ -11,5 +11,6 @@ Efectivo class >> mes: unMes organizacion: unaOrganizacion donante: unDonante [
 
 { #category : #'as yet unclassified' }
 Efectivo >> pagoConComision: unMonto [
-	self monto: unMonto
+	self monto: unMonto.
+	self comision: 0.
 ]

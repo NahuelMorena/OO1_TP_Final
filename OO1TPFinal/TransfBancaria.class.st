@@ -11,5 +11,6 @@ TransfBancaria class >> mes: unMes organizacion: unaOrganizacion donante: unDona
 
 { #category : #'as yet unclassified' }
 TransfBancaria >> pagoConComision: unMonto [
-	self monto: unMonto * 1.1
+	self monto: unMonto.
+	self comision: (unMonto * 1.1) - unMonto.
 ]

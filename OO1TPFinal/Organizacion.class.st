@@ -49,6 +49,16 @@ Organizacion >> integrantes [
 	^integrantes 
 ]
 
+{ #category : #'as yet unclassified' }
+Organizacion >> obtenerDonacionesDeEsteMes [
+	self donaciones select: [ :each | each fecha <= Date today ]	
+]
+
+{ #category : #'as yet unclassified' }
+Organizacion >> obtenerDonacionesEntre: unafecha y: otraFecha [
+	^donaciones sum: [ :each | each montoDeDonacionesEntre: unafecha y: otraFecha]
+]
+
 { #category : #accessing }
 Organizacion >> recibirDonacion: unaDonacion [ 
 	self donaciones add: unaDonacion.
