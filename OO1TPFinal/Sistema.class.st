@@ -11,7 +11,10 @@ Class {
 
 { #category : #'as yet unclassified' }
 Sistema >> altaDonante: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [
-	^self usuarios add: (Usuario unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo)
+	|usuario|
+	usuario:= Usuario unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo.
+	self cargaDeDonante: usuario.
+	^usuario obtenerIdentificacion.
 ]
 
 { #category : #'as yet unclassified' }
@@ -27,6 +30,11 @@ Sistema >> buscarDonacionesPorUsuario: unUsuario [
 { #category : #'as yet unclassified' }
 Sistema >> buscarDonantePorNumerodeDonante: nroDonante [
 	^self usuarios select: [ :each | each identificar: nroDonante ]
+]
+
+{ #category : #'as yet unclassified' }
+Sistema >> cargaDeDonante: unDonante [
+	self usuarios add: unDonante
 ]
 
 { #category : #accessing }

@@ -10,22 +10,36 @@ Class {
 		'id',
 		'grupo'
 	],
+	#classInstVars : [
+		'ids'
+	],
 	#category : #'OO1TPFinal-model'
 }
 
 { #category : #'as yet unclassified' }
-Usuario class >> unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [
+Usuario class >> darIdentificador [
+	^ids := ids + 1 
+]
+
+{ #category : #'class initialization' }
+Usuario class >> initialize [ 
+	ids := 1000
+]
+
+{ #category : #'as yet unclassified' }
+Usuario class >> unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [ 
 	^ self new 
 		nombre: unNombre
 		dni: unDni
 		telefono: unTelefono
 		email: unEmail
 		legajo: unLegajo
+		identificador: self darIdentificador.
 ]
 
 { #category : #'as yet unclassified' }
 Usuario >> identificar: numIdent [
-	(self numIdentidad == numIdent ) ifTrue: [^true.].
+	(self obtenerIdentificacion == numIdent ) ifTrue: [^true.].
 	^false.
 ]
 
@@ -41,15 +55,16 @@ Usuario >> nombre: unNombre [
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> nombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [
+Usuario >> nombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo identificador: unIdentificador [
 	nombre := unNombre.
 	dni := unDni.
 	telefono := unTelefono.
 	email := unEmail.
-	legajo := unLegajo
+	legajo := unLegajo.
+	id := unIdentificador.
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> numIdentidad [
+Usuario >> obtenerIdentificacion [
 	^id
 ]
