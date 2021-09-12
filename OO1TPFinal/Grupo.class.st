@@ -8,7 +8,8 @@ Class {
 		'integrantes',
 		'pozoComun',
 		'recaudacion',
-		'objetivoPozo'
+		'objetivoPozo',
+		'usuarios'
 	],
 	#category : #'OO1TPFinal-model'
 }
@@ -20,6 +21,14 @@ Grupo >> aceptarPropuestaDeOrganizacion: unaOrganizacion [
 	
 ]
 
+{ #category : #accessing }
+Grupo >> altaDonante: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [
+	|usuario|
+	usuario:= Usuario unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo.
+	self cargaDeDonante: usuario.
+	^usuario obtenerIdentificacion.
+]
+
 { #category : #'as yet unclassified' }
 Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direccion: unaDireccion [ 
 	self propuestas add: (Organizacion denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion)
@@ -29,6 +38,16 @@ Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direcc
 { #category : #initialization }
 Grupo >> buscarDonacionesPorUsuario: unUsuario [ 
 	^self organizaciones select: [ :each | each buscarDonacionesPorUsuario: unUsuario ]
+]
+
+{ #category : #initialization }
+Grupo >> buscarDonantePorNumerodeDonante: nroDonante [
+	^self usuarios select: [ :each | each identificar: nroDonante ]
+]
+
+{ #category : #initialization }
+Grupo >> cargaDeDonante: unDonante [
+	self usuarios add: unDonante
 ]
 
 { #category : #'as yet unclassified' }
@@ -59,6 +78,21 @@ Grupo >> propuestas [
 	^propuestas
 ]
 
+{ #category : #initialization }
+Grupo >> realizarDonacionEfectivo: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
+	unaOrganizacion recibirDonacion: (Efectivo mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+]
+
+{ #category : #initialization }
+Grupo >> realizarDonacionPagoFacil: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
+	unaOrganizacion recibirDonacion: (PagoFacil  mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+]
+
+{ #category : #initialization }
+Grupo >> realizarDonacionTransferenciaBancaria: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
+	unaOrganizacion recibirDonacion: (TransfBancaria mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+]
+
 { #category : #'as yet unclassified' }
 Grupo >> recibirColaboracion: unMonto [
 	((self cargarMonto: unMonto) >= self objetivoPozo) ifTrue: [ pozoComun := false ]
@@ -68,4 +102,9 @@ Grupo >> recibirColaboracion: unMonto [
 Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
 	pozoComun:= true.
 	objetivoPozo := montoObjetivo
+]
+
+{ #category : #accessing }
+Grupo >> usuarios [
+	^usuarios
 ]
