@@ -3,8 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'usuarios',
-		'grupos',
-		'donaciones'
+		'grupos'
 	],
 	#category : #'OO1TPFinal-model'
 }
@@ -24,7 +23,7 @@ Sistema >> altaOrganizacion: unaDenominacion representante: unRepresentante dire
 
 { #category : #'as yet unclassified' }
 Sistema >> buscarDonacionesPorUsuario: unUsuario [
-	^self donaciones select: [ :each | each donador == unUsuario & ( each actualYear)]
+	^self grupos select: [ :each | each organizaciones buscarDonacionesPorUsuario: unUsuario]
 ]
 
 { #category : #'as yet unclassified' }
@@ -35,11 +34,6 @@ Sistema >> buscarDonantePorNumerodeDonante: nroDonante [
 { #category : #'as yet unclassified' }
 Sistema >> cargaDeDonante: unDonante [
 	self usuarios add: unDonante
-]
-
-{ #category : #accessing }
-Sistema >> donaciones [
-	^donaciones
 ]
 
 { #category : #accessing }

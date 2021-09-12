@@ -25,6 +25,11 @@ Organizacion >> agregarIntegrante: unIntegrante [
 	self integrantes add: unIntegrante
 ]
 
+{ #category : #accessing }
+Organizacion >> buscarDonacionesPorUsuario: unUsuario [
+	^self donaciones select: [ :each | each donador == unUsuario & ( each actualYear)].
+]
+
 { #category : #'as yet unclassified' }
 Organizacion >> denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion [.
 	denominacion := unaDenominacion.

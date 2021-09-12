@@ -7,8 +7,7 @@ Class {
 		'telefono',
 		'legajo',
 		'email',
-		'id',
-		'grupo'
+		'id'
 	],
 	#classInstVars : [
 		'ids'

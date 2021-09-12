@@ -26,6 +26,11 @@ Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direcc
 	
 ]
 
+{ #category : #initialization }
+Grupo >> buscarDonacionesPorUsuario: unUsuario [ 
+	^self organizaciones select: [ :each | each buscarDonacionesPorUsuario: unUsuario ]
+]
+
 { #category : #'as yet unclassified' }
 Grupo >> cargarMonto: unMonto [
 	^(recaudacion:= recaudacion + unMonto).
