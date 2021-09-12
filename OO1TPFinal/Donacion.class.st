@@ -38,16 +38,16 @@ Donacion >> initialize [
 	fecha := Date today.
 ]
 
-{ #category : #accessing }
-Donacion >> mes [
-	^mesDelPago.
-]
-
 { #category : #'as yet unclassified' }
 Donacion >> mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante [
 	mesDelPago:= unMes.
 	organizacion:= unaOrganizacion.
 	donador:= unDonante.
+]
+
+{ #category : #accessing }
+Donacion >> mesDelPago [
+	^mesDelPago.
 ]
 
 { #category : #accessing }
