@@ -39,9 +39,10 @@ Donacion >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-Donacion >> mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante [
+Donacion >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante [
 	mesDelPago:= unMes.
 	organizacion:= unaOrganizacion.
+	monto := unMonto.
 	donador:= unDonante.
 ]
 

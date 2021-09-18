@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Efectivo class >> mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante [
-	super mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante. 
+Efectivo class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante [
+	super mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante. 
 ]
 
 { #category : #'as yet unclassified' }

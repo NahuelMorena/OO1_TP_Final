@@ -72,6 +72,11 @@ Grupo >> organizaciones [
 	^organizaciones 
 ]
 
+{ #category : #accessing }
+Grupo >> pozoComun [
+	^pozoComun.
+]
+
 { #category : #initialization }
 Grupo >> propuestas [
 	^propuestas
@@ -79,17 +84,22 @@ Grupo >> propuestas [
 
 { #category : #initialization }
 Grupo >> realizarDonacionEfectivo: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (Efectivo mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (Efectivo mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #initialization }
 Grupo >> realizarDonacionPagoFacil: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (PagoFacil  mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (PagoFacil  mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #initialization }
 Grupo >> realizarDonacionTransferenciaBancaria: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (TransfBancaria mesAPagar: unMes organizacion: unaOrganizacion donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (TransfBancaria mesAPagar: unMes organizacion: unaOrganizacion monto:unMonto donante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+]
+
+{ #category : #accessing }
+Grupo >> recaudacion [
+	^recaudacion.
 ]
 
 { #category : #'as yet unclassified' }
@@ -100,7 +110,8 @@ Grupo >> recibirColaboracion: unMonto [
 { #category : #initialization }
 Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
 	pozoComun:= true.
-	objetivoPozo := montoObjetivo
+	objetivoPozo := montoObjetivo.
+	recaudacion := 0
 ]
 
 { #category : #accessing }

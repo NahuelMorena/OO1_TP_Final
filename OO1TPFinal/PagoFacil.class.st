@@ -5,8 +5,8 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PagoFacil class >> mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante [
-	super mesAPagar: unMes organizacion: unaOrganizacion donante: unDonante. 
+PagoFacil class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante [
+	super mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante. 
 ]
 
 { #category : #'as yet unclassified' }
