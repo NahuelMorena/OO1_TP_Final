@@ -6,7 +6,6 @@ Class {
 		'representante',
 		'direccion',
 		'integrantes',
-		'coordinadores',
 		'donaciones'
 	],
 	#category : #'OO1TPFinal-model'
@@ -46,7 +45,6 @@ Organizacion >> donaciones [
 Organizacion >> initialize [ 
 	integrantes := OrderedCollection new.
 	donaciones := OrderedCollection new.
-	coordinadores := OrderedCollection new.
 ]
 
 { #category : #accessing }

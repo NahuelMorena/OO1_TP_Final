@@ -5,7 +5,6 @@ Class {
 		'organizaciones',
 		'propuestas',
 		'coordinadores',
-		'integrantes',
 		'pozoComun',
 		'recaudacion',
 		'objetivoPozo',
@@ -24,14 +23,14 @@ Grupo >> aceptarPropuestaDeOrganizacion: unaOrganizacion [
 { #category : #accessing }
 Grupo >> altaDonante: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [
 	|usuario|
-	usuario:= Usuario unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo.
+	usuario := (Usuario unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo).
 	self cargaDeDonante: usuario.
 	^usuario obtenerIdentificacion.
 ]
 
 { #category : #'as yet unclassified' }
 Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direccion: unaDireccion [ 
-	self propuestas add: (Organizacion denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion)
+	^self propuestas add: (Organizacion denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion)
 	
 ]
 
@@ -60,7 +59,7 @@ Grupo >> initialize [
 	propuestas := OrderedCollection new.
 	organizaciones := OrderedCollection new.
 	coordinadores := OrderedCollection new. 
-	integrantes := OrderedCollection new.
+	usuarios := OrderedCollection new.
 ]
 
 { #category : #accessing }
