@@ -26,7 +26,11 @@ Organizacion >> agregarIntegrante: unIntegrante [
 
 { #category : #accessing }
 Organizacion >> buscarDonacionesPorUsuario: unUsuario [
-	^self donaciones select: [ :each | ((self obtenerUsuarioDeDonacion: each) == unUsuario) & ( each actualYear)].
+	^self donaciones select: 
+				[ :each | (each idDonador == unUsuario obtenerIdentificacion) & (each actualYear)]
+	
+	 
+				
 ]
 
 { #category : #'as yet unclassified' }
@@ -60,11 +64,6 @@ Organizacion >> obtenerDonacionesDeEsteMes [
 { #category : #'as yet unclassified' }
 Organizacion >> obtenerDonacionesEntre: unafecha y: otraFecha [
 	^donaciones sum: [ :each | each montoDeDonacionesEntre: unafecha y: otraFecha]
-]
-
-{ #category : #'as yet unclassified' }
-Organizacion >> obtenerUsuarioDeDonacion: unaDonacion [
-	^self integrantes select: [ :each | each obtenerIdentificacion == unaDonacion idDonador]
 ]
 
 { #category : #accessing }

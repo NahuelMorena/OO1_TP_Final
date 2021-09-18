@@ -51,7 +51,9 @@ OrganizacionTest >> altaDonanteTest [
 		dni: 22222222 
 		telefono: 2227222222 
 		email: 'otroEmail@gmail.com' 
-		legajo: 333333
+		legajo: 333333.
+	organizacion agregarIntegrante: user1.
+	organizacion agregarIntegrante: user2
 ]
 
 { #category : #running }
@@ -75,6 +77,8 @@ OrganizacionTest >> testBuscarDonacionesPorUsuario [
 		telefono: 4444444444 
 		email: 'ejemplo@gmail.com' 
 		legajo: 444444.
+	organizacion agregarIntegrante: usuarioABuscar.
+	self assert: (organizacion integrantes) size equals: 3.
 	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isEmpty.
 	self assert: (organizacion donaciones) size equals: 4.
 	donacionDePrueba := Efectivo 
@@ -98,4 +102,9 @@ OrganizacionTest >> testObtenerDonacionesDeEsteMes [
 		numDonante: 1004.
 	organizacion recibirDonacion: donacionPrueba.
 	self assert: (organizacion obtenerDonacionesDeEsteMes) isNotEmpty.
+]
+
+{ #category : #tests }
+OrganizacionTest >> testObtenerDonacionesEntreFechas [
+	
 ]
