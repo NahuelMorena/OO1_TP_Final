@@ -2,9 +2,7 @@ Class {
 	#name : #OrganizacionTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'grupo',
-		'organizacion1',
-		'organizacion2',
+		'organizacion',
 		'user1',
 		'user2'
 	],
@@ -12,28 +10,28 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-OrganizacionTest >> altaDonacionesTest: organizacion [ 
+OrganizacionTest >> altaDonacionesTest [
 	|donacionEfectivo donacionPagoFacil donacionPagoFacil2 donacionTransfBancaria|
 	donacionEfectivo := Efectivo 
-		mesAPagar: Date today monthIndex
+		mesAPagar: 3
 		organizacion: organizacion
 		monto: 300.0 
-		donante: 1004.
+		numDonante: 2004.
 	donacionPagoFacil := PagoFacil 
 		mesAPagar: 4 
 		organizacion: organizacion
 		monto: 450.0 
-		donante: 1006.
+		numDonante: 2006.
 	donacionTransfBancaria := TransfBancaria 
 		mesAPagar: 5
 		organizacion: organizacion
 		monto: 500.0 
-		donante: 1004.
+		numDonante: 2004.
 	donacionPagoFacil2 := PagoFacil 
-		mesAPagar: Date today monthIndex
+		mesAPagar: 3
 		organizacion: organizacion
 		monto: 450.0 
-		donante: 1006.
+		numDonante: 2006.
 	organizacion recibirDonacion: donacionEfectivo.
 	organizacion recibirDonacion: donacionTransfBancaria.
 	organizacion recibirDonacion: donacionPagoFacil.
@@ -58,12 +56,46 @@ OrganizacionTest >> altaDonanteTest [
 
 { #category : #running }
 OrganizacionTest >> setUp [
-	|organizacion representante|
+	|representante|
 	representante := Usuario unNombre: 'representante' dni: 99999999 
 		telefono: 2227999999 email: 'representante@gmail.com' legajo: 999999. 
 	organizacion := Organizacion denominacion: 'unaDenominacion' 
 		representante: representante direccion: 'unaDireccion'.
 	self altaDonanteTest.
-	self altaDonacionesTest: organizacion.
+	self altaDonacionesTest.
 
+]
+
+{ #category : #tests }
+OrganizacionTest >> testBuscarDonacionesPorUsuario [
+	|usuarioABuscar donacionDePrueba| 
+	usuarioABuscar := Usuario
+		unNombre: 'nombreEjemplo' 
+		dni: 44444444 
+		telefono: 4444444444 
+		email: 'ejemplo@gmail.com' 
+		legajo: 444444.
+	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isEmpty.
+	self assert: (organizacion donaciones) size equals: 4.
+	donacionDePrueba := Efectivo 
+		mesAPagar: 3
+		organizacion: organizacion
+		monto: 300.0 
+		numDonante: (usuarioABuscar obtenerIdentificacion).
+	organizacion recibirDonacion: donacionDePrueba.
+	self assert: (organizacion donaciones) size equals: 5.
+	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isNotEmpty.
+]
+
+{ #category : #'as yet unclassified' }
+OrganizacionTest >> testObtenerDonacionesDeEsteMes [
+	|donacionPrueba|
+	self assert: (organizacion obtenerDonacionesDeEsteMes) isEmpty.
+	donacionPrueba := Efectivo 
+		mesAPagar: Date today monthIndex
+		organizacion: organizacion
+		monto: 300.0 
+		numDonante: 1004.
+	organizacion recibirDonacion: donacionPrueba.
+	self assert: (organizacion obtenerDonacionesDeEsteMes) isNotEmpty.
 ]

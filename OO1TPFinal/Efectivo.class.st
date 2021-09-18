@@ -5,8 +5,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Efectivo class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante [
-	super mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante. 
+Efectivo class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: unNumDonante [
+	^self new
+		mesAPagar: unMes 
+		organizacion: unaOrganizacion 
+		monto: unMonto 
+		numDonante: unNumDonante
+		comision: 'Efectivo'.
 ]
 
 { #category : #'as yet unclassified' }

@@ -24,13 +24,13 @@ Donacion >> comision: unaComision [
 ]
 
 { #category : #accessing }
-Donacion >> donador [
-	^donador
+Donacion >> fecha [
+	^fecha
 ]
 
 { #category : #accessing }
-Donacion >> fecha [
-	^fecha
+Donacion >> idDonador [
+	^donador
 ]
 
 { #category : #initialization }
@@ -39,11 +39,12 @@ Donacion >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-Donacion >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante [
+Donacion >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: unNumDonante comision: unaComision [
 	mesDelPago:= unMes.
 	organizacion:= unaOrganizacion.
 	monto := unMonto.
-	donador:= unDonante.
+	donador:= unNumDonante.
+	comision:= unaComision
 ]
 
 { #category : #accessing }

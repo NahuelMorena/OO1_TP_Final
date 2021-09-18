@@ -5,8 +5,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PagoFacil class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante [
-	super mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto donante: unDonante. 
+PagoFacil class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: unNumDonante [
+	^self new
+		mesAPagar: unMes 
+		organizacion: unaOrganizacion 
+		monto: unMonto 
+		numDonante: unNumDonante
+		comision: 'Pago Facil'. 
 ]
 
 { #category : #'as yet unclassified' }
