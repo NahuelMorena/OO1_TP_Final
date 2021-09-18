@@ -106,5 +106,12 @@ OrganizacionTest >> testObtenerDonacionesDeEsteMes [
 
 { #category : #tests }
 OrganizacionTest >> testObtenerDonacionesEntreFechas [
-	
+	|fecha1 fecha2|
+	self assert: (organizacion donaciones) size equals: 4.
+	fecha1 := Date newDay: 26 month: 8 year: 2020.
+	fecha2 := Date newDay: 31 month: 1 year: 2021.
+	self assert: (organizacion obtenerDonacionesEntre: fecha1 y: fecha2) equals: 0.0.
+	fecha1 := Date newDay: 20 month: 8 year: 2021.
+	fecha2 := Date newDay: 10 month: 10 year: 2021.
+	self assert: (organizacion obtenerDonacionesEntre: fecha1 y: fecha2) equals: 1700.0.
 ]

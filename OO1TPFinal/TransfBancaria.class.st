@@ -10,8 +10,7 @@ TransfBancaria class >> mesAPagar: unMes organizacion: unaOrganizacion monto:unM
 		mesAPagar: unMes 
 		organizacion: unaOrganizacion 
 		monto: unMonto 
-		numDonante: unNumDonante
-		comision: 'Transferencia Bancaria'. 
+		numDonante: unNumDonante.
 ]
 
 { #category : #'as yet unclassified' }

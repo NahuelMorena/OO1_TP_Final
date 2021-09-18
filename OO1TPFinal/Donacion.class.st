@@ -39,12 +39,11 @@ Donacion >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-Donacion >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: unNumDonante comision: unaComision [
+Donacion >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: unNumDonante [ 
 	mesDelPago:= unMes.
 	organizacion:= unaOrganizacion.
-	monto := unMonto.
 	donador:= unNumDonante.
-	comision:= unaComision
+	self pagoConComision: unMonto.
 ]
 
 { #category : #accessing }

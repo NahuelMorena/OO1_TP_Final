@@ -10,8 +10,7 @@ PagoFacil class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto
 		mesAPagar: unMes 
 		organizacion: unaOrganizacion 
 		monto: unMonto 
-		numDonante: unNumDonante
-		comision: 'Pago Facil'. 
+		numDonante: unNumDonante.
 ]
 
 { #category : #'as yet unclassified' }

@@ -10,8 +10,7 @@ Efectivo class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto 
 		mesAPagar: unMes 
 		organizacion: unaOrganizacion 
 		monto: unMonto 
-		numDonante: unNumDonante
-		comision: 'Efectivo'.
+		numDonante: unNumDonante.
 ]
 
 { #category : #'as yet unclassified' }
