@@ -10,8 +10,21 @@ Class {
 		'objetivoPozo',
 		'usuarios'
 	],
+	#classInstVars : [
+		'soleInstance'
+	],
 	#category : #'OO1TPFinal-model'
 }
+
+{ #category : #'as yet unclassified' }
+Grupo class >> clearSoleInstance [
+	soleInstance := nil
+]
+
+{ #category : #'as yet unclassified' }
+Grupo class >> soleIntance [
+	^ soleInstance ifNil: [ soleInstance := self new ]
+]
 
 { #category : #'as yet unclassified' }
 Grupo >> aceptarPropuestaDeOrganizacion: unaOrganizacion [
