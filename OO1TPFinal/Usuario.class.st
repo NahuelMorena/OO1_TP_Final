@@ -7,6 +7,7 @@ Class {
 		'telefono',
 		'legajo',
 		'email',
+		'contraseña',
 		'id'
 	],
 	#classInstVars : [
@@ -26,14 +27,20 @@ Usuario class >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-Usuario class >> unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [ 
+Usuario class >> unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo contraseña: unaContraseña [
 	^ self new 
 		nombre: unNombre
 		dni: unDni
 		telefono: unTelefono
 		email: unEmail
 		legajo: unLegajo
+		contraseña: unaContraseña		
 		identificador: self darIdentificador.
+]
+
+{ #category : #accessing }
+Usuario >> contraseña [
+	^contraseña
 ]
 
 { #category : #'as yet unclassified' }
@@ -53,16 +60,22 @@ Usuario >> nombre: unNombre [
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> nombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo identificador: unIdentificador [
+Usuario >> nombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo contraseña: unaContraseña identificador: unIdentificador [
 	nombre := unNombre.
 	dni := unDni.
 	telefono := unTelefono.
 	email := unEmail.
 	legajo := unLegajo.
+	contraseña := unaContraseña.
 	id := unIdentificador.
 ]
 
 { #category : #'as yet unclassified' }
 Usuario >> obtenerIdentificacion [
 	^ id
+]
+
+{ #category : #'as yet unclassified' }
+Usuario >> validadUsuario: unNombre y: unaContraseña [
+	^((self nombre == unNombre) & (self contraseña == unaContraseña))
 ]

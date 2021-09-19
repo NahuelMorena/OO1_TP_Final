@@ -18,13 +18,15 @@ GrupoTest >> altaDonanteTest [
 		dni: 11111111 
 		telefono: 2227111111 
 		email: 'unEmail@gmail.com' 
-		legajo: 222222.
+		legajo: 222222
+		contraseña: 'unaContraseña'.
 	user2 := Usuario 
 		unNombre: 'otroNombre' 
 		dni: 22222222 
 		telefono: 2227222222 
 		email: 'otroEmail@gmail.com' 
-		legajo: 333333  
+		legajo: 333333
+		contraseña: 'otraContraseña'
 		
 ]
 
@@ -66,7 +68,8 @@ GrupoTest >> testBuscarDonantePorNumerodeDonante [
 		dni: 33333333 
 		telefono: 2345234565 
 		email: 'user3@gmail.com' 
-		legajo: 234564.
+		legajo: 234564
+		contraseña: 'unaContraseña'.
 	self assert: (grupo buscarDonantePorNumerodeDonante: numDonante) isNotEmpty.
 ]
 

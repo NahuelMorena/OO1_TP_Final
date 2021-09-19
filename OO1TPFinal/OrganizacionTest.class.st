@@ -41,13 +41,15 @@ OrganizacionTest >> altaDonanteTest [
 		dni: 11111111 
 		telefono: 2227111111 
 		email: 'unEmail@gmail.com' 
-		legajo: 222222.
+		legajo: 222222
+		contraseña: 'unaContraseña'.
 	user2 := Usuario 
 		unNombre: 'otroNombre' 
 		dni: 22222222 
 		telefono: 2227222222 
 		email: 'otroEmail@gmail.com' 
-		legajo: 333333.
+		legajo: 333333
+		contraseña: 'otraContraseña'.
 	organizacion agregarIntegrante: user1.
 	organizacion agregarIntegrante: user2
 ]
@@ -56,7 +58,7 @@ OrganizacionTest >> altaDonanteTest [
 OrganizacionTest >> setUp [
 	|representante|
 	representante := Usuario unNombre: 'representante' dni: 99999999 
-		telefono: 2227999999 email: 'representante@gmail.com' legajo: 999999. 
+		telefono: 2227999999 email: 'representante@gmail.com' legajo: 999999 contraseña: 'contraseñaRepre'. 
 	organizacion := Organizacion denominacion: 'unaDenominacion' 
 		representante: representante direccion: 'unaDireccion'.
 	self altaDonanteTest.
@@ -72,7 +74,8 @@ OrganizacionTest >> testBuscarDonacionesPorUsuario [
 		dni: 44444444 
 		telefono: 4444444444 
 		email: 'ejemplo@gmail.com' 
-		legajo: 444444.
+		legajo: 444444
+		contraseña: 'contraseñaDeEjemplo'.
 	organizacion agregarIntegrante: usuarioABuscar.
 	self assert: (organizacion integrantes) size equals: 3.
 	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isEmpty.

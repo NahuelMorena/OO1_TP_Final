@@ -21,9 +21,9 @@ Grupo >> aceptarPropuestaDeOrganizacion: unaOrganizacion [
 ]
 
 { #category : #accessing }
-Grupo >> altaDonante: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo [
+Grupo >> altaDonante: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo contraseña: unaContraseña [
 	|usuario|
-	usuario := (Usuario unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo).
+	usuario := (Usuario unNombre: unNombre dni: unDni telefono: unTelefono email: unEmail legajo: unLegajo contraseña: unaContraseña).
 	self cargaDeDonante: usuario.
 	^usuario obtenerIdentificacion.
 ]
@@ -112,6 +112,12 @@ Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
 	pozoComun:= true.
 	objetivoPozo := montoObjetivo.
 	recaudacion := 0
+]
+
+{ #category : #'as yet unclassified' }
+Grupo >> usuario: unNombre protegidoPor: unaContraseña [
+  ^ (self usuarios) detect: [ :each | each validadUsuario: unNombre y: unaContraseña]
+      ifNone: [ nil ]
 ]
 
 { #category : #accessing }
