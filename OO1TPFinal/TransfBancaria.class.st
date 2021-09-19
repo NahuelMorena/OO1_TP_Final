@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+TransfBancaria >> obtenerPagoSinComision [
+	^(self monto / 1.1) round: 0
+]
+
+{ #category : #'as yet unclassified' }
 TransfBancaria >> pagoConComision: unMonto [
-	self comision: (unMonto * 1.1) - unMonto.
+	self monto: (unMonto * 1.1).
 ]

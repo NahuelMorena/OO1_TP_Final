@@ -5,6 +5,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+Efectivo >> obtenerPagoSinComision [
+	^ self monto
+]
+
+{ #category : #'as yet unclassified' }
 Efectivo >> pagoConComision: unMonto [
-	self comision: 0.
+	self monto: unMonto
 ]

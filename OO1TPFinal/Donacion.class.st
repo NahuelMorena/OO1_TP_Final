@@ -4,7 +4,6 @@ Class {
 	#instVars : [
 		'mesDelPago',
 		'monto',
-		'comision',
 		'donador',
 		'fecha'
 	],
@@ -26,16 +25,6 @@ Donacion >> actualYear [
 ]
 
 { #category : #accessing }
-Donacion >> comision [
-	^comision
-]
-
-{ #category : #accessing }
-Donacion >> comision: unaComision [
-	comision := unaComision.
-]
-
-{ #category : #accessing }
 Donacion >> fecha [
 	^fecha
 ]
@@ -54,7 +43,6 @@ Donacion >> initialize [
 Donacion >> mesAPagar: unMes monto: unMonto numDonante: unNumDonante [ 
 	mesDelPago:= unMes.
 	donador:= unNumDonante.
-	monto:= unMonto.
 	self pagoConComision: unMonto.
 ]
 
@@ -69,9 +57,19 @@ Donacion >> monto [
 ]
 
 { #category : #accessing }
+Donacion >> monto: unMonto [
+	monto:= unMonto
+]
+
+{ #category : #accessing }
 Donacion >> montoDeDonacionesEntre: unafecha y: otraFecha [
-	(self fecha between: unafecha and: otraFecha) ifTrue: [ ^self monto ].
+	(self fecha between: unafecha and: otraFecha) ifTrue: [ ^self obtenerPagoSinComision ].
 	^0
+]
+
+{ #category : #'as yet unclassified' }
+Donacion >> obtenerPagoSinComision [
+	^self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }
