@@ -11,10 +11,23 @@ Class {
 	#category : #'OO1TPFinal-model'
 }
 
+{ #category : #'as yet unclassified' }
+Donacion class >> mesAPagar: unMes monto: unMonto numDonante: unNumDonante [
+	^self new
+		mesAPagar: unMes 
+		monto: unMonto 
+		numDonante: unNumDonante.
+]
+
 { #category : #accessing }
 Donacion >> actualYear [
 	^(Date today year == self fecha year)
 	
+]
+
+{ #category : #accessing }
+Donacion >> comision [
+	^comision
 ]
 
 { #category : #accessing }
