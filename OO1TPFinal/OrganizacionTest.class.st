@@ -92,7 +92,6 @@ OrganizacionTest >> testObtenerDonacionesDeEsteMes [
 	self assert: (organizacion obtenerDonacionesDeEsteMes) isEmpty.
 	donacionPrueba := Efectivo 
 		mesAPagar: Date today monthIndex
-		organizacion: organizacion
 		monto: 300.0 
 		numDonante: 1004.
 	organizacion recibirDonacion: donacionPrueba.
