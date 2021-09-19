@@ -22,7 +22,7 @@ Grupo class >> clearSoleInstance [
 ]
 
 { #category : #'as yet unclassified' }
-Grupo class >> soleIntance [
+Grupo class >> soleInstance [
 	^ soleInstance ifNil: [ soleInstance := self new ]
 ]
 
