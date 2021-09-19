@@ -5,16 +5,14 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Efectivo class >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: unNumDonante [
+Efectivo class >> mesAPagar: unMes monto: unMonto numDonante: unNumDonante [
 	^self new
 		mesAPagar: unMes 
-		organizacion: unaOrganizacion 
 		monto: unMonto 
 		numDonante: unNumDonante.
 ]
 
 { #category : #'as yet unclassified' }
 Efectivo >> pagoConComision: unMonto [
-	self monto: unMonto.
 	self comision: 0.
 ]

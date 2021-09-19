@@ -14,22 +14,18 @@ OrganizacionTest >> altaDonacionesTest [
 	|donacionEfectivo donacionPagoFacil donacionPagoFacil2 donacionTransfBancaria|
 	donacionEfectivo := Efectivo 
 		mesAPagar: 3
-		organizacion: organizacion
 		monto: 300.0 
 		numDonante: 2004.
 	donacionPagoFacil := PagoFacil 
 		mesAPagar: 4 
-		organizacion: organizacion
 		monto: 450.0 
 		numDonante: 2006.
 	donacionTransfBancaria := TransfBancaria 
 		mesAPagar: 5
-		organizacion: organizacion
 		monto: 500.0 
 		numDonante: 2004.
 	donacionPagoFacil2 := PagoFacil 
 		mesAPagar: 3
-		organizacion: organizacion
 		monto: 450.0 
 		numDonante: 2006.
 	organizacion recibirDonacion: donacionEfectivo.
@@ -83,7 +79,6 @@ OrganizacionTest >> testBuscarDonacionesPorUsuario [
 	self assert: (organizacion donaciones) size equals: 4.
 	donacionDePrueba := Efectivo 
 		mesAPagar: 3
-		organizacion: organizacion
 		monto: 300.0 
 		numDonante: (usuarioABuscar obtenerIdentificacion).
 	organizacion recibirDonacion: donacionDePrueba.

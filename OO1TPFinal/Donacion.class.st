@@ -5,7 +5,6 @@ Class {
 		'mesDelPago',
 		'monto',
 		'comision',
-		'organizacion',
 		'donador',
 		'fecha'
 	],
@@ -20,7 +19,7 @@ Donacion >> actualYear [
 
 { #category : #accessing }
 Donacion >> comision: unaComision [
-	comision:= unaComision.
+	comision := unaComision.
 ]
 
 { #category : #accessing }
@@ -39,10 +38,10 @@ Donacion >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-Donacion >> mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: unNumDonante [ 
+Donacion >> mesAPagar: unMes monto: unMonto numDonante: unNumDonante [ 
 	mesDelPago:= unMes.
-	organizacion:= unaOrganizacion.
 	donador:= unNumDonante.
+	monto:= unMonto.
 	self pagoConComision: unMonto.
 ]
 
@@ -57,13 +56,8 @@ Donacion >> monto [
 ]
 
 { #category : #accessing }
-Donacion >> monto: unMonto [
-	monto:= unMonto.
-]
-
-{ #category : #accessing }
 Donacion >> montoDeDonacionesEntre: unafecha y: otraFecha [
-	((self fecha) >= unafecha & (self fecha) <= otraFecha) ifTrue: [ ^self monto ].
+	(self fecha between: unafecha and: otraFecha) ifTrue: [ ^self monto ].
 	^0
 ]
 

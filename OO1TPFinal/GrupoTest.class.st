@@ -58,10 +58,6 @@ GrupoTest >> testAceptarPropuestaDeOrganizacion [
 	self deny: (grupo organizaciones includes: organizacion2).
 ]
 
-{ #category : #'as yet unclassified' }
-GrupoTest >> testBuscarDonacionesPorUsuario [
-]
-
 { #category : #tests }
 GrupoTest >> testBuscarDonantePorNumerodeDonante [
 	|numDonante|

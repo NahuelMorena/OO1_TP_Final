@@ -84,17 +84,17 @@ Grupo >> propuestas [
 
 { #category : #initialization }
 Grupo >> realizarDonacionEfectivo: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (Efectivo mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (Efectivo mesAPagar: unMes monto: unMonto numDonante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #initialization }
 Grupo >> realizarDonacionPagoFacil: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (PagoFacil  mesAPagar: unMes organizacion: unaOrganizacion monto: unMonto numDonante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (PagoFacil  mesAPagar: unMes monto: unMonto numDonante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #initialization }
 Grupo >> realizarDonacionTransferenciaBancaria: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (TransfBancaria mesAPagar: unMes organizacion: unaOrganizacion monto:unMonto numDonante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
+	unaOrganizacion recibirDonacion: (TransfBancaria mesAPagar: unMes monto:unMonto numDonante: ( self buscarDonantePorNumerodeDonante: nroDonante)).
 ]
 
 { #category : #accessing }
