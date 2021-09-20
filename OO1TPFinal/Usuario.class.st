@@ -76,6 +76,6 @@ Usuario >> obtenerIdentificacion [
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> validadUsuario: unNombre y: unaContraseña [
+Usuario >> validarUsuario: unNombre y: unaContraseña [
 	^((self nombre == unNombre) & (self contraseña == unaContraseña))
 ]

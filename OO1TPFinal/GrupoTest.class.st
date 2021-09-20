@@ -71,6 +71,7 @@ GrupoTest >> testBuscarDonantePorNumerodeDonante [
 		legajo: 234564
 		contraseña: 'unaContraseña'.
 	self assert: (grupo buscarDonantePorNumerodeDonante: numDonante) isNotEmpty.
+	self assert: (grupo buscarDonantePorNumerodeDonante: -1) isEmpty.
 ]
 
 { #category : #'as yet unclassified' }
@@ -90,4 +91,13 @@ GrupoTest >> testRecibirColaboracion [
 	
 	
 	
+]
+
+{ #category : #tests }
+GrupoTest >> testUsuarioProtegido [
+	|userPrueba numUsuario|
+	self assert: (grupo usuario: 'nombrePrueba' protegidoPor: 'contrPrueba') equals: nil.
+	numUsuario := grupo altaDonante: 'unNombre' dni: 111 telefono: 112342 email: 'nahuel1@gmail.com' legajo: 12312  contraseña: 'contrPrueba'.
+	userPrueba := grupo buscarDonantePorNumerodeDonante: numUsuario.
+	self assert: (grupo usuario: 'nombrePrueba' protegidoPor: 'contrPrueba') equals: userPrueba.
 ]

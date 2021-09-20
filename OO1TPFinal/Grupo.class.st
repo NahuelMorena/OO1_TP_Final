@@ -54,7 +54,7 @@ Grupo >> buscarDonacionesPorUsuario: unUsuario [
 
 { #category : #initialization }
 Grupo >> buscarDonantePorNumerodeDonante: nroDonante [
-	^self usuarios select: [ :each | each identificar: nroDonante ]
+	^self usuarios select: [ :each | each identificar: nroDonante ].
 ]
 
 { #category : #initialization }
@@ -129,8 +129,8 @@ Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
 
 { #category : #'as yet unclassified' }
 Grupo >> usuario: unNombre protegidoPor: unaContraseña [
-  ^ (self usuarios) detect: [ :each | each validadUsuario: unNombre y: unaContraseña]
-      ifNone: [ nil ]
+  ^ self usuarios detect: [ :each | each validarUsuario: unNombre y: unaContraseña]
+     ifNone: [ nil ]
 ]
 
 { #category : #accessing }

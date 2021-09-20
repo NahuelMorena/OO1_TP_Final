@@ -42,9 +42,9 @@ RegisterComponent >> legajo: unLegajo [
 
 { #category : #rendering }
 RegisterComponent >> registerAndLogin [
-	|user|
-	user := self model altaDonante: (self userName) dni: (self dni) telefono: (self telefono) email: (self email) legajo: (self legajo).
-	self proceedWith: user.
+	|numUser|
+	numUser := self model altaDonante: (self userName) dni: (self dni) telefono: (self telefono) email: (self email) legajo: (self legajo) contraseña: (self password).
+	self proceedWith: (self model buscarDonantePorNumerodeDonante: numUser).
 ]
 
 { #category : #rendering }
@@ -56,11 +56,13 @@ RegisterComponent >> renderButtonsOn: aCanvas [
 RegisterComponent >> renderInputElementsOn: aCanvas [
   	self renderInputCommonElementsOn: aCanvas.
    aCanvas label: 'DNI'.
-	aCanvas paragraph: [ aCanvas textInput on: #dni of: self ].
+	aCanvas paragraph: [ aCanvas numberInput on: #dni of: self ].
+	aCanvas label: 'Email'.
+	aCanvas paragraph: [ aCanvas emailInput on: #email of: self ].
    aCanvas label: 'Telefono'.
-   aCanvas paragraph: [ aCanvas textInput on: #telefono of: self ].
+   aCanvas paragraph: [ aCanvas numberInput on: #telefono of: self ].
 	aCanvas label: 'Legajo'.
-	aCanvas paragraph: [ aCanvas textInput on: #legajo of: self ].
+	aCanvas paragraph: [ aCanvas numberInput on: #legajo of: self ].
 ]
 
 { #category : #rendering }
