@@ -54,7 +54,8 @@ Grupo >> buscarDonacionesPorUsuario: unUsuario [
 
 { #category : #initialization }
 Grupo >> buscarDonantePorNumerodeDonante: nroDonante [
-	^self usuarios select: [ :each | each identificar: nroDonante ].
+	^self usuarios detect: [ :each | each identificar: nroDonante ]
+		ifNone: [ nil ]
 ]
 
 { #category : #initialization }
