@@ -8,63 +8,58 @@ Class {
 	#category : #'OO1TPFinal-UI'
 }
 
-{ #category : #rendering }
-AccessGrantingComponent >> model [ 
-	^ Grupo soleInstance
-
+{ #category : #accessing }
+AccessGrantingComponent >> model [
+	^Grupo soleInstance.
 ]
 
-{ #category : #rendering }
+{ #category : #accessing }
 AccessGrantingComponent >> password [ 
-	^password
+	^password.
 ]
 
-{ #category : #rendering }
+{ #category : #accessing }
 AccessGrantingComponent >> password: aPassword [
-	password := aPassword
+	password := aPassword.
 ]
 
-{ #category : #rendering }
+{ #category : #'as yet unclassified' }
 AccessGrantingComponent >> proceedWith: aUser [
 	self session user: aUser.
-   self call: HomeComponent new
-
+	self call: HomeComponent new.
 ]
 
 { #category : #rendering }
 AccessGrantingComponent >> renderButtonsOn: aCanvas [
-   self subclassResponsibility
+	self subclassResponsibility.
 ]
 
 { #category : #rendering }
 AccessGrantingComponent >> renderContentOn: aCanvas [
-   aCanvas
-      form: [ self renderInputElementsOn: aCanvas.
-	      self renderButtonsOn: aCanvas]
+	aCanvas form: [ self renderInputElementsOn: aCanvas.
+					self renderButtonsOn: aCanvas ]
 ]
 
 { #category : #rendering }
 AccessGrantingComponent >> renderInputCommonElementsOn: aCanvas [
-   aCanvas heading: 'TP Final OO1'.
-   aCanvas label: 'Nombre de usuario'.
+	aCanvas heading: 'TP Final OO1'.
+	aCanvas label: 'Nombre de usuario'.
 	aCanvas paragraph: [ aCanvas textInput on: #userName of: self ].
-   aCanvas label: 'contraseña'.
-   aCanvas paragraph: [ aCanvas passwordInput on: #password of: self ]
-
+	aCanvas label: 'contraseña'.
+	aCanvas paragraph: [ aCanvas passwordInput on: #password of: self ]
 ]
 
 { #category : #rendering }
 AccessGrantingComponent >> renderInputElementsOn: aCanvas [
-   self subclassResponsibility
-
+	self subclassResponsibility.
 ]
 
-{ #category : #rendering }
+{ #category : #accessing }
 AccessGrantingComponent >> userName [ 	
 	^userName
 ]
 
-{ #category : #rendering }
+{ #category : #accessing }
 AccessGrantingComponent >> userName: aUserName [
-	userName := aUserName
+	userName := aUserName.
 ]

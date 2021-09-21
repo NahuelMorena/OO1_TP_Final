@@ -130,8 +130,9 @@ Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
 
 { #category : #'as yet unclassified' }
 Grupo >> usuario: unNombre protegidoPor: unaContraseña [
-  ^ self usuarios detect: [ :each | each validarUsuario: unNombre y: unaContraseña]
-     ifNone: [ nil ]
+  ^ usuarios 
+		detect: [ :each | each validarUsuario: unNombre y: unaContraseña]
+    		 ifNone: [ nil ]
 ]
 
 { #category : #accessing }

@@ -8,11 +8,12 @@ Class {
 }
 
 { #category : #accessing }
-SessionWithUser >> user [
+SessionWithUser >> user [ 	
 	^user
+	
 ]
 
 { #category : #accessing }
 SessionWithUser >> user: anObject [
-	user := anObject 
+	user := anObject.
 ]

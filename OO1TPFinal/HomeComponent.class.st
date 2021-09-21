@@ -6,14 +6,15 @@ Class {
 
 { #category : #accessing }
 HomeComponent >> model [ 
-	^ Grupo soleInstance
+	^ Grupo soleInstance.
 ]
 
-{ #category : #rendering }
+{ #category : #accessing }
 HomeComponent >> renderContentOn: aCanvas [
-	aCanvas heading: 'Estas en el Home'.
-   aCanvas label: '----'.
-	(self model usuarios) ifNotNil: [ aCanvas label: 'hay usuarios' ].
-	
+	aCanvas heading: 'Estas en Home'.
+	aCanvas label: '//Nombre de usuario: ', self session user nombre.
+	aCanvas label: '//Contraseña de usuario: ', self session user contraseña.
+	(self model usuario: (self session user nombre) protegidoPor: (self session user contraseña))
+      ifNotNil: [ aCanvas label: 'encuentro algo re easy'].
 	
 ]

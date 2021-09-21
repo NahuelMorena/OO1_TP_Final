@@ -4,25 +4,24 @@ Class {
 	#category : #'OO1TPFinal-UI'
 }
 
-{ #category : #rendering }
-LoginComponent >> login [   
-  (self model usuario: userName protegidoPor: password)
-      ifNotNil: [ :it | self proceedWith: it ].
-  userName := nil.
-  password := nil
+{ #category : #accessing }
+LoginComponent >> login [
+	(self model usuario: (self userName) protegidoPor: (self password))
+		ifNotNil: [ :it | self proceedWith: it ].
+
 ]
 
-{ #category : #rendering }
+{ #category : #'as yet unclassified' }
 LoginComponent >> registerNewUser [
-   self call: RegisterComponent new
+	self call: RegisterComponent new
 ]
 
 { #category : #rendering }
 LoginComponent >> renderButtonsOn: aCanvas [
 	self renderSignInButtonOn: aCanvas.
-   aCanvas horizontalRule.
-   aCanvas paragraph: '¿No tienes una cuenta?'.
-   self renderSignUpButtonOn: aCanvas
+	aCanvas horizontalRule.
+	aCanvas paragraph: '¿No tienes una cuenta?'.
+	self renderSignUpButtonOn: aCanvas.
 ]
 
 { #category : #rendering }
@@ -31,15 +30,15 @@ LoginComponent >> renderInputElementsOn: aCanvas [
 ]
 
 { #category : #rendering }
-LoginComponent >> renderSignInButtonOn: aCanvas [ 
-   aCanvas submitButton  
-      callback: [ self login ];
-      with: 'Iniciar sesion'
+LoginComponent >> renderSignInButtonOn: aCanvas [
+	aCanvas submitButton 
+		callback: [ self login ];
+		with: 'Iniciar sesion'
 ]
 
 { #category : #rendering }
 LoginComponent >> renderSignUpButtonOn: aCanvas [
-   aCanvas submitButton 
-      callback: [ self registerNewUser ];
-      with: 'Registrate'
+	aCanvas submitButton 
+		callback: [ self registerNewUser ];
+		with: 'Registrate'
 ]
