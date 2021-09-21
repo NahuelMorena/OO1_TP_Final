@@ -3,10 +3,21 @@ Class {
 	#superclass : #WAComponent,
 	#instVars : [
 		'userName',
-		'password'
+		'password',
+		'email'
 	],
 	#category : #'OO1TPFinal-UI'
 }
+
+{ #category : #accessing }
+AccessGrantingComponent >> email [ 
+	^email
+]
+
+{ #category : #accessing }
+AccessGrantingComponent >> email: unEmail [
+	email := unEmail
+]
 
 { #category : #accessing }
 AccessGrantingComponent >> model [
@@ -43,8 +54,8 @@ AccessGrantingComponent >> renderContentOn: aCanvas [
 { #category : #rendering }
 AccessGrantingComponent >> renderInputCommonElementsOn: aCanvas [
 	aCanvas heading: 'TP Final OO1'.
-	aCanvas label: 'Nombre de usuario'.
-	aCanvas paragraph: [ aCanvas textInput on: #userName of: self ].
+	aCanvas label: 'Email'.
+	aCanvas paragraph: [ aCanvas textInput on: #email of: self ].
 	aCanvas label: 'contraseña'.
 	aCanvas paragraph: [ aCanvas passwordInput on: #password of: self ]
 ]

@@ -129,9 +129,9 @@ Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
 ]
 
 { #category : #'as yet unclassified' }
-Grupo >> usuario: unNombre protegidoPor: unaContraseña [
+Grupo >> usuario: unEmail protegidoPor: unaContraseña [
   ^ usuarios 
-		detect: [ :each | each validarUsuario: unNombre y: unaContraseña]
+		detect: [ :each | each validarUsuario: unEmail y: unaContraseña]
     		 ifNone: [ nil ]
 ]
 

@@ -106,5 +106,5 @@ GrupoTest >> testValidarAcceso [
 		contraseña: 'contrPrueba'.
 	userPrueba := grupo buscarDonantePorNumerodeDonante: numUsuario.
 	self assert: (grupo usuarios includes: userPrueba).
-	self assert: (grupo usuario: 'unNombre' protegidoPor: 'contrPrueba') equals: userPrueba.
+	self assert: (grupo usuario: 'nahuel1@gmail.com' protegidoPor: 'contrPrueba') equals: userPrueba.
 ]

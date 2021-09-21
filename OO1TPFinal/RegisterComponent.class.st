@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'dni',
 		'legajo',
-		'telefono',
-		'email'
+		'telefono'
 	],
 	#category : #'OO1TPFinal-UI'
 }
@@ -18,16 +17,6 @@ RegisterComponent >> dni [
 { #category : #accessing }
 RegisterComponent >> dni: unDni [
 	dni := unDni.
-]
-
-{ #category : #accessing }
-RegisterComponent >> email [ 
-	^email
-]
-
-{ #category : #accessing }
-RegisterComponent >> email: unEmail [
-	email := unEmail.
 ]
 
 { #category : #accessing }
@@ -56,10 +45,10 @@ RegisterComponent >> renderButtonsOn: aCanvas [
 { #category : #rendering }
 RegisterComponent >> renderInputElementsOn: aCanvas [
 	self renderInputCommonElementsOn: aCanvas.
+	aCanvas label: 'Nombre de usuario'.
+	aCanvas paragraph: [ aCanvas textInput on: #userName of: self ].
 	aCanvas label: 'DNI'.
 	aCanvas paragraph: [ aCanvas numberInput on: #dni of: self ].
-	aCanvas label: 'Email'.
-	aCanvas paragraph: [ aCanvas emailInput on: #email of: self ].
 	aCanvas label: 'Telefono'.
 	aCanvas paragraph: [ aCanvas numberInput on: #telefono of: self ].
 	aCanvas label: 'Legajo'.

@@ -43,6 +43,12 @@ Usuario >> contraseña [
 	^contraseña
 ]
 
+{ #category : #accessing }
+Usuario >> email [
+	^email
+
+]
+
 { #category : #'as yet unclassified' }
 Usuario >> identificar: numIdent [
 	^(self obtenerIdentificacion == numIdent )
@@ -76,6 +82,6 @@ Usuario >> obtenerIdentificacion [
 ]
 
 { #category : #'as yet unclassified' }
-Usuario >> validarUsuario: unNombre y: unaContraseña [
-	^((self nombre = unNombre) & (self contraseña = unaContraseña))
+Usuario >> validarUsuario: unEmail y: unaContraseña [
+	^((self email = unEmail) & (self contraseña = unaContraseña))
 ]
