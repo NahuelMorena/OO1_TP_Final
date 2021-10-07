@@ -59,6 +59,11 @@ Grupo >> buscarDonantePorNumerodeDonante: nroDonante [
 ]
 
 { #category : #initialization }
+Grupo >> cargaDeCoordinador: unCoordinador [
+	self coordinadores add: unCoordinador 
+]
+
+{ #category : #initialization }
 Grupo >> cargaDeDonante: unDonante [
 	self usuarios add: unDonante
 ]
@@ -66,6 +71,18 @@ Grupo >> cargaDeDonante: unDonante [
 { #category : #'as yet unclassified' }
 Grupo >> cargarMonto: unMonto [
 	^(recaudacion:= recaudacion + unMonto).
+]
+
+{ #category : #'as yet unclassified' }
+Grupo >> coordinador: unEmail protegidoPor: unaContraseña [
+  ^ (self coordinadores) 
+		detect: [ :each | each validarUsuario: unEmail y: unaContraseña]
+    		 ifNone: [ nil ]
+]
+
+{ #category : #initialization }
+Grupo >> coordinadores [
+	^coordinadores 
 ]
 
 { #category : #initialization }
