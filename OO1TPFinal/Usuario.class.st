@@ -44,6 +44,18 @@ Usuario >> contraseña [
 ]
 
 { #category : #accessing }
+Usuario >> dni [ 
+	^dni
+
+]
+
+{ #category : #accessing }
+Usuario >> dni: unDni [
+	dni:= unDni
+
+]
+
+{ #category : #accessing }
 Usuario >> email [
 	^email
 
@@ -52,6 +64,16 @@ Usuario >> email [
 { #category : #'as yet unclassified' }
 Usuario >> identificar: numIdent [
 	^(self obtenerIdentificacion == numIdent )
+]
+
+{ #category : #accessing }
+Usuario >> legajo [ 
+	^legajo
+]
+
+{ #category : #accessing }
+Usuario >> legajo: unLegajo [
+	legajo:= unLegajo
 ]
 
 { #category : #accessing }
@@ -79,6 +101,16 @@ Usuario >> nombre: unNombre dni: unDni telefono: unTelefono email: unEmail legaj
 { #category : #'as yet unclassified' }
 Usuario >> obtenerIdentificacion [
 	^ id
+]
+
+{ #category : #accessing }
+Usuario >> telefono [ 
+	^telefono
+]
+
+{ #category : #accessing }
+Usuario >> telefono: unTelefono [
+	telefono := unTelefono
 ]
 
 { #category : #'as yet unclassified' }
