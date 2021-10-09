@@ -11,6 +11,11 @@ CoordinatorHomeComponent >> acceptProposed: aProposed [
 ]
 
 { #category : #'as yet unclassified' }
+CoordinatorHomeComponent >> donationList [
+	^ self model organizaciones collect: [ :each | each donaciones].
+]
+
+{ #category : #'as yet unclassified' }
 CoordinatorHomeComponent >> proposedList [
 	^self model propuestas.
 ]
@@ -25,8 +30,21 @@ CoordinatorHomeComponent >> renderContentOn: aCanvas [
 ]
 
 { #category : #rendering }
+CoordinatorHomeComponent >> renderDonationList: aCanvas [
+	aCanvas unorderedList: [ (self donationList ) do: [ :each | 
+		aCanvas text: 
+			'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) nombre,' ||| '.
+		aCanvas horizontalRule.
+		]
+	]
+	
+]
+
+{ #category : #rendering }
 CoordinatorHomeComponent >> renderDonationOn: aCanvas [
-	aCanvas heading:'donaciones'
+	aCanvas heading  level: 2; with: 'Donaciones del sistema'.
+	self renderDonationList: aCanvas.
+	self renderViewAllDonation: aCanvas.
 ]
 
 { #category : #rendering }
@@ -52,4 +70,8 @@ CoordinatorHomeComponent >> renderProposedOrganizations: aCanvas [
      with: 'Propuestas de Organizaciones'.
 	self renderProposedList: aCanvas.
 	
+]
+
+{ #category : #rendering }
+CoordinatorHomeComponent >> renderViewAllDonation: aCanvas [
 ]

@@ -25,6 +25,11 @@ Donacion >> actualYear [
 ]
 
 { #category : #accessing }
+Donacion >> donador [
+	^donador
+]
+
+{ #category : #accessing }
 Donacion >> fecha [
 	^fecha
 ]
