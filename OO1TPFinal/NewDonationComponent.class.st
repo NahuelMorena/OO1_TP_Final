@@ -24,7 +24,7 @@ NewDonationComponent >> cashPaymentMethod [
 	self model realizarDonacionEfectivo: (self session user obtenerIdentificacion ) 
 				  para: (self organization)  
 				  cantidad: (self money) 
-				  paraEl: (self money).
+				  paraEl: (self month).
 	self answer.
 ]
 
@@ -55,7 +55,7 @@ NewDonationComponent >> money [
 
 { #category : #accessing }
 NewDonationComponent >> money: aMoney [
-	money := aMoney
+	money := (aMoney asNumber).
 ]
 
 { #category : #accessing }
@@ -100,7 +100,7 @@ NewDonationComponent >> renderContentOn: aCanvas [
 	aCanvas heading  level: 2; with: 'Dirección: ', organization direccion.
 	(self money) 
 		ifNil: [ self renderDonateFormOn: aCanvas. ] 
-		ifNotNil: [ aCanvas text: 'Selecciona metodo de pago para donar $', self money,' para el mes: ', self month.
+		ifNotNil: [ aCanvas text: 'Selecciona metodo de pago para donar $', (self money asString) ,' para el mes: ', self month.
 						aCanvas horizontalRule.
 						aCanvas break.
 						self renderPaymentMethods: aCanvas].

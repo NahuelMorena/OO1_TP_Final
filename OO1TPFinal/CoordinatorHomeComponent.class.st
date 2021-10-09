@@ -12,7 +12,10 @@ CoordinatorHomeComponent >> acceptProposed: aProposed [
 
 { #category : #'as yet unclassified' }
 CoordinatorHomeComponent >> donationList [
-	^ self model organizaciones collect: [ :each | each donaciones].
+	|aux|
+	aux := OrderedCollection new.
+	self model organizaciones do: [ :each | aux addAll: each donaciones].
+	^aux.
 ]
 
 { #category : #'as yet unclassified' }
@@ -32,8 +35,10 @@ CoordinatorHomeComponent >> renderContentOn: aCanvas [
 { #category : #rendering }
 CoordinatorHomeComponent >> renderDonationList: aCanvas [
 	aCanvas unorderedList: [ (self donationList ) do: [ :each | 
-		aCanvas text: 
-			'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) nombre,' ||| '.
+		aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) nombre, ' ||| '.
+		aCanvas text: 'Organización: ', (self searchOrganizationOf: each) , ' ||| '.
+		aCanvas text: 'Monto: ', ((each obtenerPagoSinComision) asString), ' ||| '.
+		aCanvas text: 'Mes asignado: ', each mesDelPago, ' ||| '.
 		aCanvas horizontalRule.
 		]
 	]
@@ -74,4 +79,20 @@ CoordinatorHomeComponent >> renderProposedOrganizations: aCanvas [
 
 { #category : #rendering }
 CoordinatorHomeComponent >> renderViewAllDonation: aCanvas [
+	aCanvas anchor 
+      callback: [ self showAllDonation ];
+      with: [ aCanvas button: 'Sección de donaciones' ].
+]
+
+{ #category : #rendering }
+CoordinatorHomeComponent >> searchOrganizationOf: aDonation [
+	|aux|
+	self model organizaciones do: [ :each | (each donaciones includes: aDonation) ifTrue: [ aux := each denominacion ] ].
+	^aux.
+]
+
+{ #category : #'as yet unclassified' }
+CoordinatorHomeComponent >> showAllDonation [
+	self call: DonationComponent new.
+	
 ]
