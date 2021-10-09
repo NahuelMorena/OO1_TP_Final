@@ -30,7 +30,16 @@ DonationComponent >> renderDonorsList: aCanvas [.
 	aCanvas heading level2; with: 'Lista de donadores'.
 	aCanvas
 		unorderedList: [ (self donorsList) do: [ :each |
-				aCanvas label: 'hola'.
-				]
+			aCanvas paragraph: [ aCanvas anchor
+				callback: [ self showUser: each ];
+				with: (self model buscarDonantePorNumerodeDonante: each) name. ].
+			aCanvas horizontalRule.
+			]
 		]
+]
+
+{ #category : #'as yet unclassified' }
+DonationComponent >> showUser: anUserNumber [
+	self call: (CoordinatorProfileComponent new 
+              	userNumber: anUserNumber;  yourself)
 ]

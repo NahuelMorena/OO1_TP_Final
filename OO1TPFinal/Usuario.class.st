@@ -77,7 +77,7 @@ Usuario >> legajo: unLegajo [
 ]
 
 { #category : #accessing }
-Usuario >> nombre [
+Usuario >> name [
 	^nombre
 ]
 

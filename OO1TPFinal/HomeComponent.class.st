@@ -29,7 +29,7 @@ HomeComponent >> renderCommonHome: aCanvas [
 	aCanvas heading: 'Esta en Home'.
 	aCanvas anchor 
    		callback: [ self profileView];
-      with: [ aCanvas heading level: 2; with: 'Perfil de ', self session user nombre ].
+      with: [ aCanvas heading level: 2; with: 'Perfil de ', self session user name ].
 	aCanvas horizontalRule.
 	self renderOrganizationsOn: aCanvas.
 	aCanvas horizontalRule.
@@ -50,7 +50,7 @@ HomeComponent >> renderOrganizationsList: aCanvas [
 				callback: [ self showOrganization: each ];
 				with: each denominacion.
 			].
-			aCanvas text: 'Representante: ', each representante nombre, ' ||| '.
+			aCanvas text: 'Representante: ', each representante name, ' ||| '.
 			aCanvas text: 'Direccion: ', each direccion, ' ||| '.
 			aCanvas horizontalRule.
 		]

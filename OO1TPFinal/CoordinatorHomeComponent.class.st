@@ -33,9 +33,9 @@ CoordinatorHomeComponent >> renderContentOn: aCanvas [
 ]
 
 { #category : #rendering }
-CoordinatorHomeComponent >> renderDonationList: aCanvas [
+CoordinatorHomeComponent >> renderDonationInThisMonthList: aCanvas [
 	aCanvas unorderedList: [ (self donationList ) do: [ :each | 
-		aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) nombre, ' ||| '.
+		aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) name, ' ||| '.
 		aCanvas text: 'Organización: ', (self searchOrganizationOf: each) , ' ||| '.
 		aCanvas text: 'Monto: ', ((each obtenerPagoSinComision) asString), ' ||| '.
 		aCanvas text: 'Mes asignado: ', each mesDelPago, ' ||| '.
@@ -48,7 +48,7 @@ CoordinatorHomeComponent >> renderDonationList: aCanvas [
 { #category : #rendering }
 CoordinatorHomeComponent >> renderDonationOn: aCanvas [
 	aCanvas heading  level: 2; with: 'Donaciones del sistema'.
-	self renderDonationList: aCanvas.
+	self renderDonationInThisMonthList: aCanvas.
 	self renderViewAllDonation: aCanvas.
 ]
 
@@ -58,7 +58,7 @@ CoordinatorHomeComponent >> renderProposedList: aCanvas [
 		unorderedList: [ (self proposedList ) do: [ :each | 
 			aCanvas text: 'Denominación: ', each denominacion, ' ||| '.
 			aCanvas text: 'Dirección: ', each direccion, ' ||| '.
-			aCanvas text: 'Representante: ', each representante nombre, ' ||| '.
+			aCanvas text: 'Representante: ', each representante name, ' ||| '.
 			aCanvas anchor 
       			callback: [ self acceptProposed: each ];
       			with: [ aCanvas button: 'Aceptar propuesta de organización' ].

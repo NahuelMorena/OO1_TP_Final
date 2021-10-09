@@ -34,12 +34,12 @@ OrganizationComponent >> organization: anOrganization [
 OrganizationComponent >> renderCommonOn: aCanvas [
 	aCanvas heading: 'Informacion de la Organización'.
 	self renderInformation: aCanvas.
-	aCanvas break. 
 ]
 
 { #category : #accessing }
 OrganizationComponent >> renderContentOn: aCanvas [
 	self renderCommonOn: aCanvas.
+	aCanvas break.
 	self renderFollowOrDonationOn: aCanvas.
 	self renderReturnButton: aCanvas.
 ]
@@ -76,7 +76,7 @@ OrganizationComponent >> renderInformation: aCanvas [.
 	aCanvas horizontalRule.
 	aCanvas label: 'Dirección: ', self organization direccion.
 	aCanvas horizontalRule.
-	aCanvas label: 'Representante: ', self organization representante nombre.
+	aCanvas label: 'Representante: ', self organization representante name.
 	aCanvas horizontalRule.
 	aCanvas label: 'Email del Representante: ', self organization representante email.
 	aCanvas horizontalRule.
