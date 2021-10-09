@@ -46,7 +46,9 @@ NewOrganizationComponent >> registerNewOrganization [
 { #category : #rendering }
 NewOrganizationComponent >> renderContentOn: aCanvas [
 	aCanvas heading: 'Nueva Organización'.
-	self renderInputElementsOn: aCanvas.
+	aCanvas form: [  
+		self renderInputElementsOn: aCanvas.
+		self renderRegisterButtonOn: aCanvas.].
 	aCanvas break.
 	aCanvas break.
 	aCanvas text: 
@@ -61,15 +63,13 @@ NewOrganizationComponent >> renderInputElementsOn: aCanvas [
 	aCanvas paragraph: [ aCanvas textInput on: #denominacion of: self ].
 	aCanvas label: 'Dirección'.
 	aCanvas paragraph: [ aCanvas textInput on: #direccion of: self ].
-	self renderRegisterButtonOn: aCanvas.
 ]
 
 { #category : #rendering }
 NewOrganizationComponent >> renderRegisterButtonOn: aCanvas [
-	aCanvas
-     paragraph: [ aCanvas anchor 
-	      callback: [ self registerNewOrganization ];
-	      with: [ aCanvas button with: 'Registrar Organización' ] ]
+	aCanvas submitButton 
+		callback: [ self registerNewOrganization ];
+		with: 'Registrar Organización'.
 ]
 
 { #category : #rendering }

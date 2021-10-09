@@ -4,6 +4,12 @@ Class {
 	#category : #'OO1TPFinal-UI'
 }
 
+{ #category : #visiting }
+CoordinatorHomeComponent >> acceptProposed: aProposed [
+	self model aceptarPropuestaDeOrganizacion: aProposed
+	
+]
+
 { #category : #'as yet unclassified' }
 CoordinatorHomeComponent >> proposedList [
 	^self model propuestas.
@@ -27,11 +33,13 @@ CoordinatorHomeComponent >> renderDonationOn: aCanvas [
 CoordinatorHomeComponent >> renderProposedList: aCanvas [
 	aCanvas 
 		unorderedList: [ (self proposedList ) do: [ :each | 
-			aCanvas paragraph: [ aCanvas anchor
-				callback: [ self showOrganization: each ];
-				with: 'unaOrganization'
-			].
-			aCanvas label: 'Hola'.
+			aCanvas text: 'Denominación: ', each denominacion, ' ||| '.
+			aCanvas text: 'Dirección: ', each direccion, ' ||| '.
+			aCanvas text: 'Representante: ', each representante nombre, ' ||| '.
+			aCanvas anchor 
+      			callback: [ self acceptProposed: each ];
+      			with: [ aCanvas button: 'Aceptar propuesta de organización' ].
+			aCanvas horizontalRule.
 		]
 	]
 	

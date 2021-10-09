@@ -33,11 +33,21 @@ Organizacion >> buscarDonacionesPorUsuario: unUsuario [
 				
 ]
 
+{ #category : #accessing }
+Organizacion >> denominacion [ 
+	^denominacion
+]
+
 { #category : #'as yet unclassified' }
 Organizacion >> denominacion: unaDenominacion representante: unRepresentante direccion: unaDireccion [.
 	denominacion := unaDenominacion.
  	representante := unRepresentante.
 	direccion := unaDireccion.
+]
+
+{ #category : #accessing }
+Organizacion >> direccion [ 
+	^direccion
 ]
 
 { #category : #accessing }
@@ -69,4 +79,9 @@ Organizacion >> obtenerDonacionesEntre: unafecha y: otraFecha [
 { #category : #accessing }
 Organizacion >> recibirDonacion: unaDonacion [ 
 	self donaciones add: unaDonacion.
+]
+
+{ #category : #accessing }
+Organizacion >> representante [
+	^representante
 ]
