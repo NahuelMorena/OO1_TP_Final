@@ -37,14 +37,22 @@ HomeComponent >> renderCommonHome: aCanvas [
 	
 ]
 
+{ #category : #'as yet unclassified' }
+HomeComponent >> renderContentOn: aCanvas [
+	self renderCommonHome: aCanvas.
+]
+
 { #category : #rendering }
 HomeComponent >> renderOrganizationsList: aCanvas [
 	aCanvas 
 		unorderedList: [ (self organizationsList ) do: [ :each | 
 			aCanvas paragraph: [ aCanvas anchor
 				callback: [ self showOrganization: each ];
-				with: 'unaOrganization'
-			]
+				with: each denominacion.
+			].
+			aCanvas text: 'Representante: ', each representante nombre, ' ||| '.
+			aCanvas text: 'Direccion: ', each direccion, ' ||| '.
+			aCanvas horizontalRule.
 		]
 	]
 		
@@ -63,5 +71,9 @@ HomeComponent >> renderOrganizationsOn: aCanvas [
 ]
 
 { #category : #'as yet unclassified' }
-HomeComponent >> showOrganization: each [
+HomeComponent >> showOrganization: anOrganization [
+	self 
+     call: (OrganizationComponent new 
+              	organization: anOrganization;
+               yourself)
 ]

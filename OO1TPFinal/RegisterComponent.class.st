@@ -33,7 +33,7 @@ RegisterComponent >> legajo: unLegajo [
 RegisterComponent >> registerAndLogin [
 	|numUser|
 	numUser := self model altaDonante: (self userName) dni: (self dni) telefono: (self telefono) email: (self email)  legajo: (self legajo) contraseña: (self password).
-	self proceedWithUser: (self model buscarDonantePorNumerodeDonante: numUser).
+	self proceedWith: (self model buscarDonantePorNumerodeDonante: numUser).
 ]
 
 { #category : #rendering }

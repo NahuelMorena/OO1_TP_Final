@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 LoginComponent >> login [
 	(self model usuario: (self email ) protegidoPor: (self password))
-		ifNotNil: [ :it | self proceedWithUser: it ].
+		ifNotNil: [ :it | self proceedWith: it ].
 	(self model coordinador: (self email ) protegidoPor: (self password))
 		ifNotNil: [ :it | self proceedWithCoordinator: it ].
 ]

@@ -35,15 +35,15 @@ AccessGrantingComponent >> password: aPassword [
 ]
 
 { #category : #'as yet unclassified' }
-AccessGrantingComponent >> proceedWithCoordinator: aUser [
+AccessGrantingComponent >> proceedWith: aUser [
 	self session user: aUser.
-	self call: CoordinatorHomeComponent new.
+	self call: HomeComponent new.
 ]
 
 { #category : #'as yet unclassified' }
-AccessGrantingComponent >> proceedWithUser: aUser [
+AccessGrantingComponent >> proceedWithCoordinator: aUser [
 	self session user: aUser.
-	self call: UserHomeComponent new.
+	self call: CoordinatorHomeComponent new.
 ]
 
 { #category : #rendering }
