@@ -72,8 +72,12 @@ HomeComponent >> renderOrganizationsOn: aCanvas [
 
 { #category : #'as yet unclassified' }
 HomeComponent >> showOrganization: anOrganization [
-	self 
-     call: (OrganizationComponent new 
-              	organization: anOrganization;
-               yourself)
+	(self model coordinadores includes: (self session user)) 
+			ifTrue: 
+				[ self call: (CoordinatorOrganizationComponent new 
+              	organization: anOrganization;  yourself) ]
+			ifFalse: 
+				[ self call: (OrganizationComponent new 
+        			organization: anOrganization;  yourself) ].
+	
 ]
