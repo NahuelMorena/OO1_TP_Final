@@ -20,9 +20,21 @@ ProfileComponent >> file [
 	
 ]
 
+{ #category : #'as yet unclassified' }
+ProfileComponent >> model [ 
+	^ Grupo soleInstance.
+	
+]
+
 { #category : #accessing }
 ProfileComponent >> name [ 
 	^self session user name.
+]
+
+{ #category : #'as yet unclassified' }
+ProfileComponent >> organizationList [
+	^ self model organizaciones select: [ :each | each integrantes includes: (self user) ].
+	
 ]
 
 { #category : #accessing }
@@ -40,6 +52,7 @@ ProfileComponent >> renderContentOn: aCanvas [
 	aCanvas heading: 'Perfil de ', self name.
 	aCanvas horizontalRule.
 	self renderInformationOn: aCanvas.
+	self renderOrganizationFollowList: aCanvas.
 	aCanvas break.
 	self renderReturnButton: aCanvas.
 ]
@@ -62,9 +75,22 @@ ProfileComponent >> renderInformationOn: aCanvas [
 ]
 
 { #category : #rendering }
+ProfileComponent >> renderOrganizationFollowList: aCanvas [
+	aCanvas heading level2; with: 'Organizaciones seguidas'.
+	(self organizationList)
+		do: [ :each | aCanvas text: each denominacion, ' ||| '. ]
+	
+]
+
+{ #category : #rendering }
 ProfileComponent >> renderReturnButton: aCanvas [
 	aCanvas
      paragraph: [ aCanvas anchor 
 	      callback: [ self answer ];
 	      with: [ aCanvas button with: 'Volver' ] ]
+]
+
+{ #category : #accessing }
+ProfileComponent >> user [ 
+	^ self session user.
 ]
