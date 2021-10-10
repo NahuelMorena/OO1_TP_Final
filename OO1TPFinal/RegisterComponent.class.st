@@ -71,3 +71,13 @@ RegisterComponent >> telefono [
 RegisterComponent >> telefono: unTelefono [
 	telefono := unTelefono.
 ]
+
+{ #category : #accessing }
+RegisterComponent >> userName [ 	
+	^userName
+]
+
+{ #category : #accessing }
+RegisterComponent >> userName: aUserName [
+	userName := aUserName.
+]

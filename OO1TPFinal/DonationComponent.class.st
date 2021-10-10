@@ -22,6 +22,7 @@ DonationComponent >> model [
 DonationComponent >> renderContentOn: aCanvas [
 	aCanvas heading: 'Apartado de donaciones'.
 	self renderDonorsList: aCanvas.
+	self renderReturnButton: aCanvas.
 
 ]
 
@@ -36,6 +37,14 @@ DonationComponent >> renderDonorsList: aCanvas [.
 			aCanvas horizontalRule.
 			]
 		]
+]
+
+{ #category : #'as yet unclassified' }
+DonationComponent >> renderReturnButton: aCanvas [
+	aCanvas
+     paragraph: [ aCanvas anchor 
+	      callback: [ self answer ];
+	      with: [ aCanvas button with: 'Volver' ] ]
 ]
 
 { #category : #'as yet unclassified' }

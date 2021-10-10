@@ -70,13 +70,3 @@ AccessGrantingComponent >> renderInputCommonElementsOn: aCanvas [
 AccessGrantingComponent >> renderInputElementsOn: aCanvas [
 	self subclassResponsibility.
 ]
-
-{ #category : #accessing }
-AccessGrantingComponent >> userName [ 	
-	^userName
-]
-
-{ #category : #accessing }
-AccessGrantingComponent >> userName: aUserName [
-	userName := aUserName.
-]

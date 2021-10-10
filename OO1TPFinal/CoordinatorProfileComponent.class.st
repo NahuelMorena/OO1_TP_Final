@@ -13,18 +13,6 @@ CoordinatorProfileComponent >> dni [
 	^(self user) dni.
 ]
 
-{ #category : #'as yet unclassified' }
-CoordinatorProfileComponent >> donationList [
-   ^ (self donationsForOrganization) select: [ :each | each isNotEmpty ]
-	
-]
-
-{ #category : #'as yet unclassified' }
-CoordinatorProfileComponent >> donationsForOrganization [
-	^ self model organizaciones collect: [ :each | each donaciones] .
-	
-]
-
 { #category : #accessing }
 CoordinatorProfileComponent >> email [
 	^(self user) email.
@@ -67,20 +55,17 @@ CoordinatorProfileComponent >> renderContentOn: aCanvas [
 
 { #category : #rendering }
 CoordinatorProfileComponent >> renderDonationList: aCanvas [
-	aCanvas heading level2; with: 'Donaciones del usuario'.
+	aCanvas heading level2; with: 'Donaciones del usuario que presenta en lo que va del año'.
 	aCanvas unorderedList: [ (self model organizaciones ) do: [ :each | 
-			(each donaciones) do: [  :each2 | 
-				(self isUser: each2) 
-					ifTrue: [  
-						self renderOrganizationName: aCanvas of: each.
-						aCanvas text: 'Donador: ', (self user) name, ' ||| '.
-						aCanvas text: 'Monto: ', ((each2 obtenerPagoSinComision) asString), ' ||| '.
-						aCanvas text: 'Mes asignado: ', each2 mesDelPago, ' ||| '.
-						aCanvas break.
-					].
-		].
-		self title: nil.
-		aCanvas horizontalRule.]]
+			(each buscarDonacionesPorUsuario: (self user)) do: [  :each2 |  
+					self renderOrganizationName: aCanvas of: each.
+					aCanvas text: 'Donador: ', (self user) name, ' ||| '.
+					aCanvas text: 'Monto: ', ((each2 obtenerPagoSinComision) asString), ' ||| '.
+					aCanvas text: 'Mes asignado: ', each2 mesDelPago, ' ||| '.
+					aCanvas break.
+			].
+			self title: nil.
+			aCanvas horizontalRule.]]
 ]
 
 { #category : #accessing }
