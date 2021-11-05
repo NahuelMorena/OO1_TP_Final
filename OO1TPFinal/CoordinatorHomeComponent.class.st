@@ -80,7 +80,7 @@ CoordinatorHomeComponent >> renderContentOn: aCanvas [
 	self renderCommonHome: aCanvas.
 	self renderProposedOrganizations: aCanvas.
 	self renderDonationOn: aCanvas.
-	self renderCollectionOn: aCanvas
+	self renderCollectionOn: aCanvas.
 	
 	
 ]

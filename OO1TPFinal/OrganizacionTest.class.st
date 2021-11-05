@@ -61,7 +61,7 @@ OrganizacionTest >> setUp [
 		telefono: 2227999999 email: 'representante@gmail.com' legajo: 999999 contraseña: 'contraseñaRepre'. 
 	organizacion := Organizacion denominacion: 'unaDenominacion' 
 		representante: representante direccion: 'unaDireccion'.
-	self altaDonanteTest.
+	self altaDonanteTest. 
 	self altaDonacionesTest.
 
 ]
@@ -109,6 +109,6 @@ OrganizacionTest >> testObtenerDonacionesEntreFechas [
 	fecha2 := Date newDay: 31 month: 1 year: 2021.
 	self assert: (organizacion obtenerDonacionesEntre: fecha1 y: fecha2) equals: 0.0.
 	fecha1 := Date newDay: 20 month: 8 year: 2021.
-	fecha2 := Date newDay: 10 month: 10 year: 2021.
+	fecha2 := Date newDay: 10 month: 10 year: 2022.
 	self assert: (organizacion obtenerDonacionesEntre: fecha1 y: fecha2) equals: 1700.0.
 ]
