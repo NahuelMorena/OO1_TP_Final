@@ -3,6 +3,7 @@ Class {
 	#superclass : #CoordinatorHomeComponent,
 	#instVars : [
 		'amount',
+		'month',
 		'initialDay',
 		'initialMonth',
 		'initialYear',
@@ -44,6 +45,17 @@ DonationComponent >> donorsList [
 	self model organizaciones do: [ :each | each donaciones do: [ :each2 | aux add: each2 donador ] ].
 	^aux.
 	
+]
+
+{ #category : #'as yet unclassified' }
+DonationComponent >> filterByMonth [
+	|aux|
+	aux := OrderedCollection new.
+	self model organizaciones do: [ :each | each donaciones do: [ :each2 |
+			(each2 mesDelPago asNumber == (self month) asNumber) 
+					ifTrue: [ aux add: each2 ] ].
+	].
+	^aux.
 ]
 
 { #category : #'as yet unclassified' }
@@ -111,6 +123,16 @@ DonationComponent >> model [
 	^ Grupo soleInstance.
 ]
 
+{ #category : #'as yet unclassified' }
+DonationComponent >> month [
+	^month 
+]
+
+{ #category : #'as yet unclassified' }
+DonationComponent >> month: aMonth [
+	month := aMonth.
+]
+
 { #category : #rendering }
 DonationComponent >> renderAllDonationList: aCanvas [
 	aCanvas heading  level: 2; with: 'Donaciones del sistema'.
@@ -159,6 +181,7 @@ DonationComponent >> renderContentOn: aCanvas [
 	aCanvas heading: 'Apartado de donaciones'.
 	self renderDonorsList: aCanvas.
 	self renderAllDonationList: aCanvas.
+	self renderFormMonthOn: aCanvas.
 	self renderCalculateAmount: aCanvas.
 	self renderReturnButton: aCanvas.
 
@@ -175,6 +198,29 @@ DonationComponent >> renderDonorsList: aCanvas [.
 			aCanvas horizontalRule.
 			]
 		]
+]
+
+{ #category : #'as yet unclassified' }
+DonationComponent >> renderFormMonthOn: aCanvas [
+	aCanvas form: [ 
+		aCanvas label: 'Mes a buscar'.
+		aCanvas paragraph: [ aCanvas numberInput on: #month of: self ].
+		aCanvas submitButton 
+			with: 'Calcular monto obtenido'.
+	].
+	(self month) ifNotNil: [ self renderResultFilterByMonth: aCanvas ].
+]
+
+{ #category : #'as yet unclassified' }
+DonationComponent >> renderResultFilterByMonth: aCanvas [
+	aCanvas unorderedList: [ (self filterByMonth ) do: [ :each | 
+		aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) name, ' ||| '.
+		aCanvas text: 'Organización: ', (self searchOrganizationOf: each) , ' ||| '.
+		aCanvas text: 'Monto: ', ((each obtenerPagoSinComision) asString), ' ||| '.
+		aCanvas text: 'Mes asignado: ', each mesDelPago, ' ||| '.
+		aCanvas horizontalRule.
+		]
+	]
 ]
 
 { #category : #'as yet unclassified' }
