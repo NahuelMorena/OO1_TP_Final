@@ -1,12 +1,32 @@
 Class {
 	#name : #HomeComponent,
 	#superclass : #WAComponent,
+	#instVars : [
+		'donation'
+	],
 	#category : #'OO1TPFinal-UI'
 }
 
 { #category : #'as yet unclassified' }
 HomeComponent >> createNewOrganization [
 	self call: NewOrganizationComponent new.
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> donateCollection [
+	self model recibirColaboracion: (donation asNumber).
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> donation [
+	^donation
+	
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> donation: aDonation [
+	donation := aDonation 
+	
 ]
 
 { #category : #accessing }
@@ -24,6 +44,25 @@ HomeComponent >> profileView [
 	self call: ProfileComponent new.
 ]
 
+{ #category : #'as yet unclassified' }
+HomeComponent >> renderCollectionFormOn: aCanvas [
+	aCanvas heading  level: 2; with: 'Pozo común'. 
+	aCanvas label: '¿Realizar donación al Pozo Común?'.
+	aCanvas break.
+	aCanvas label: 'Objetivo a recaudar: ', self model objetivoPozo asString, ' ||| Recaudado: ', self model recaudacion asString.
+	aCanvas break. aCanvas break.
+	aCanvas form: [ 
+		aCanvas label: 'Monto a donar'.
+		aCanvas paragraph: [ aCanvas numberInput on: #donation of: self ].
+		aCanvas submitButton 
+			callback: [ self donateCollection ];
+			with: 'Donar'.
+	].
+	aCanvas horizontalRule.
+	
+	
+]
+
 { #category : #rendering }
 HomeComponent >> renderCommonHome: aCanvas [
 	aCanvas heading: 'Esta en Home'.
@@ -31,6 +70,7 @@ HomeComponent >> renderCommonHome: aCanvas [
    		callback: [ self profileView];
       with: [ aCanvas heading level: 2; with: 'Perfil de ', self session user name ].
 	aCanvas horizontalRule.
+	self renderDonateCollectionOn: aCanvas.
 	self renderOrganizationsOn: aCanvas.
 	aCanvas horizontalRule.
 	
@@ -40,6 +80,12 @@ HomeComponent >> renderCommonHome: aCanvas [
 { #category : #'as yet unclassified' }
 HomeComponent >> renderContentOn: aCanvas [
 	self renderCommonHome: aCanvas.
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> renderDonateCollectionOn: aCanvas [
+	(self model pozoComun) 
+		ifTrue: [  self renderCollectionFormOn: aCanvas. ]
 ]
 
 { #category : #rendering }

@@ -70,7 +70,7 @@ Grupo >> cargaDeDonante: unDonante [
 
 { #category : #'as yet unclassified' }
 Grupo >> cargarMonto: unMonto [
-	^(recaudacion:= recaudacion + unMonto).
+	^(recaudacion := recaudacion + unMonto).
 ]
 
 { #category : #'as yet unclassified' }
@@ -91,6 +91,8 @@ Grupo >> initialize [
 	organizaciones := OrderedCollection new.
 	coordinadores := OrderedCollection new. 
 	usuarios := OrderedCollection new.
+	pozoComun := false.
+	recaudacion := 0
 ]
 
 { #category : #accessing }
@@ -135,7 +137,14 @@ Grupo >> recaudacion [
 
 { #category : #'as yet unclassified' }
 Grupo >> recibirColaboracion: unMonto [
-	((self cargarMonto: unMonto) >= self objetivoPozo) ifTrue: [ pozoComun := false ]
+	((self cargarMonto: unMonto) >= self objetivoPozo asNumber) ifTrue: [ pozoComun := false ]
+]
+
+{ #category : #accessing }
+Grupo >> resetearPozoComun [
+	objetivoPozo := 0.
+	recaudacion := 0
+	
 ]
 
 { #category : #initialization }
