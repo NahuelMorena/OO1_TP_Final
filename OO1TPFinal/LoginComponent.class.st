@@ -6,10 +6,21 @@ Class {
 
 { #category : #accessing }
 LoginComponent >> login [
-	(self model usuario: (self email ) protegidoPor: (self password))
-		ifNotNil: [ :it | self proceedWith: it ].
+	self loginUser.
+	self loginCoordinator.
+]
+
+{ #category : #'as yet unclassified' }
+LoginComponent >> loginCoordinator [
 	(self model coordinador: (self email ) protegidoPor: (self password))
 		ifNotNil: [ :it | self proceedWithCoordinator: it ].
+]
+
+{ #category : #'as yet unclassified' }
+LoginComponent >> loginUser [
+	(self model usuario: (self email ) protegidoPor: (self password))
+		ifNotNil: [ :it | self proceedWith: it ].
+	
 ]
 
 { #category : #'as yet unclassified' }

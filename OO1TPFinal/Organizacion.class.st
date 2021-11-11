@@ -27,7 +27,7 @@ Organizacion >> agregarIntegrante: unIntegrante [
 { #category : #accessing }
 Organizacion >> buscarDonacionesPorUsuario: unUsuario [
 	^self donaciones select: 
-				[ :each | (each idDonador == unUsuario obtenerIdentificacion) & (each actualYear)]
+				[ :each | (each donador == unUsuario obtenerIdentificacion) & (each actualYear)]
 	
 	 
 				

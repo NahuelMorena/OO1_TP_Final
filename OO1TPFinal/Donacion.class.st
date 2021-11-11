@@ -34,11 +34,6 @@ Donacion >> fecha [
 	^fecha
 ]
 
-{ #category : #accessing }
-Donacion >> idDonador [
-	^donador
-]
-
 { #category : #initialization }
 Donacion >> initialize [
 	fecha := Date today.

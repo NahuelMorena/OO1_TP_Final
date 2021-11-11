@@ -88,11 +88,7 @@ CoordinatorHomeComponent >> renderContentOn: aCanvas [
 { #category : #rendering }
 CoordinatorHomeComponent >> renderDonationInThisMonthList: aCanvas [
 	aCanvas unorderedList: [ (self donationList ) do: [ :each | 
-		aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) name, ' ||| '.
-		aCanvas text: 'Organización: ', (self searchOrganizationOf: each) , ' ||| '.
-		aCanvas text: 'Monto: ', ((each obtenerPagoSinComision) asString), ' ||| '.
-		aCanvas text: 'Mes asignado: ', each mesDelPago, ' ||| '.
-		aCanvas horizontalRule.
+		self renderInformation: aCanvas of: each. 
 		]
 	]
 	
@@ -106,16 +102,31 @@ CoordinatorHomeComponent >> renderDonationOn: aCanvas [
 ]
 
 { #category : #rendering }
+CoordinatorHomeComponent >> renderInformation: aCanvas of: aDonation [
+	aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (aDonation donador)) name, ' ||| '.
+	aCanvas text: 'Organización: ', (self searchOrganizationOf: aDonation) , ' ||| '.
+	aCanvas text: 'Monto: ', ((aDonation obtenerPagoSinComision) asString), ' ||| '.
+	aCanvas text: 'Mes asignado: ', aDonation mesDelPago, ' ||| '.
+	aCanvas horizontalRule.
+	
+]
+
+{ #category : #rendering }
+CoordinatorHomeComponent >> renderProposedInformationOn: aCanvas of: proposed [ 
+	aCanvas text: 'Denominación: ', proposed denominacion, ' ||| '.
+	aCanvas text: 'Dirección: ', proposed direccion, ' ||| '.
+	aCanvas text: 'Representante: ', proposed representante name, ' ||| '.
+	aCanvas anchor 
+   		callback: [ self acceptProposed: proposed ];
+      	with: [ aCanvas button: 'Aceptar propuesta de organización' ].
+	aCanvas horizontalRule.
+]
+
+{ #category : #rendering }
 CoordinatorHomeComponent >> renderProposedList: aCanvas [
 	aCanvas 
 		unorderedList: [ (self proposedList ) do: [ :each | 
-			aCanvas text: 'Denominación: ', each denominacion, ' ||| '.
-			aCanvas text: 'Dirección: ', each direccion, ' ||| '.
-			aCanvas text: 'Representante: ', each representante name, ' ||| '.
-			aCanvas anchor 
-      			callback: [ self acceptProposed: each ];
-      			with: [ aCanvas button: 'Aceptar propuesta de organización' ].
-			aCanvas horizontalRule.
+			self renderProposedInformationOn: aCanvas of: each.
 		]
 	]
 	

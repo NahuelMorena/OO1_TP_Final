@@ -137,11 +137,7 @@ DonationComponent >> month: aMonth [
 DonationComponent >> renderAllDonationList: aCanvas [
 	aCanvas heading  level: 2; with: 'Donaciones del sistema'.
 	aCanvas unorderedList: [ (self donationList ) do: [ :each | 
-		aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) name, ' ||| '.
-		aCanvas text: 'Organización: ', (self searchOrganizationOf: each) , ' ||| '.
-		aCanvas text: 'Monto: ', ((each obtenerPagoSinComision) asString), ' ||| '.
-		aCanvas text: 'Mes asignado: ', each mesDelPago, ' ||| '.
-		aCanvas horizontalRule.
+		self renderInformation: aCanvas of: each. 
 		]
 	]
 	
@@ -214,11 +210,7 @@ DonationComponent >> renderFormMonthOn: aCanvas [
 { #category : #'as yet unclassified' }
 DonationComponent >> renderResultFilterByMonth: aCanvas [
 	aCanvas unorderedList: [ (self filterByMonth ) do: [ :each | 
-		aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (each donador)) name, ' ||| '.
-		aCanvas text: 'Organización: ', (self searchOrganizationOf: each) , ' ||| '.
-		aCanvas text: 'Monto: ', ((each obtenerPagoSinComision) asString), ' ||| '.
-		aCanvas text: 'Mes asignado: ', each mesDelPago, ' ||| '.
-		aCanvas horizontalRule.
+		self renderInformation: aCanvas of: each. 
 		]
 	]
 ]
