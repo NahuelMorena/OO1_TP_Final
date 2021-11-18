@@ -49,7 +49,7 @@ Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direcc
 
 { #category : #initialization }
 Grupo >> buscarDonacionesPorUsuarioEnTodasLasOrganizaciones: unUsuario [ 
-	^self organizaciones select: [ :each | each buscarDonacionesPorUsuarioEnTodasLasOrganizaciones: unUsuario ]
+	^self organizaciones select: [ :each | each buscarDonacionesPorUsuario: unUsuario ]
 ]
 
 { #category : #initialization }

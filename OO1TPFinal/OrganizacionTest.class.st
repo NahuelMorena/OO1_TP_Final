@@ -78,7 +78,7 @@ OrganizacionTest >> testBuscarDonacionesPorUsuario [
 		contraseña: 'contraseñaDeEjemplo'.
 	organizacion agregarIntegrante: usuarioABuscar.
 	self assert: (organizacion integrantes) size equals: 3.
-	self assert: (organizacion buscarDonacionesPorUsuarioEnTodasLasOrganizaciones: usuarioABuscar) isEmpty.
+	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isEmpty.
 	self assert: (organizacion donaciones) size equals: 4.
 	donacionDePrueba := Efectivo 
 		mesAPagar: 3
@@ -86,7 +86,7 @@ OrganizacionTest >> testBuscarDonacionesPorUsuario [
 		numDonante: (usuarioABuscar obtenerIdentificacion).
 	organizacion recibirDonacion: donacionDePrueba.
 	self assert: (organizacion donaciones) size equals: 5.
-	self assert: (organizacion buscarDonacionesPorUsuarioEnTodasLasOrganizaciones: usuarioABuscar) isNotEmpty.
+	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isNotEmpty.
 ]
 
 { #category : #'as yet unclassified' }
