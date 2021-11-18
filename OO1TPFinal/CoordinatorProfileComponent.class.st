@@ -57,7 +57,7 @@ CoordinatorProfileComponent >> renderContentOn: aCanvas [
 CoordinatorProfileComponent >> renderDonationList: aCanvas [
 	aCanvas heading level2; with: 'Donaciones del usuario que presenta en lo que va del año'.
 	aCanvas unorderedList: [ (self model organizaciones ) do: [ :each | 
-			(each buscarDonacionesPorUsuario: (self user)) do: [  :each2 |  
+			(each buscarDonacionesPorUsuarioEnTodasLasOrganizaciones: (self user)) do: [  :each2 |  
 					self renderOrganizationName: aCanvas of: each.
 					aCanvas text: 'Donador: ', (self user) name, ' ||| '.
 					aCanvas text: 'Monto: ', ((each2 obtenerPagoSinComision) asString), ' ||| '.
