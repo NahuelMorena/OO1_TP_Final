@@ -61,6 +61,22 @@ GrupoTest >> testAceptarPropuestaDeOrganizacion [
 ]
 
 { #category : #tests }
+GrupoTest >> testAltaDonante [
+	self assert: (grupo usuarios) isEmpty.
+	grupo altaDonante: 'unUsuario' dni: 22223312 telefono: 2345123454 email: 'unUsuario@gmail.com' legajo: 653451 contraseña: 'unaContraseña'.
+	self assert: (grupo usuarios) isNotEmpty.
+	
+	
+]
+
+{ #category : #tests }
+GrupoTest >> testAltaOrganizacion [
+	self assert: (grupo propuestas size) equals: 2.
+	grupo altaOrganizacion: 'Una organización' representante: user1 direccion: 'Una direccion de ejemplo'.
+	self assert: (grupo propuestas size) equals: 3.
+]
+
+{ #category : #tests }
 GrupoTest >> testBuscarDonantePorNumerodeDonante [
 	|numDonante|
 	numDonante := grupo 
@@ -72,6 +88,67 @@ GrupoTest >> testBuscarDonantePorNumerodeDonante [
 		contraseña: 'unaContraseña'.
 	self assert: (grupo buscarDonantePorNumerodeDonante: numDonante) isNotNil.
 	self assert: (grupo buscarDonantePorNumerodeDonante: -1) isNil.
+	
+]
+
+{ #category : #tests }
+GrupoTest >> testCargarMonto [
+	grupo cargarMonto: 300.
+	self assert: (grupo recaudacion) equals: 300.0.
+	grupo cargarMonto: 450.
+	self assert: (grupo recaudacion) equals: 750.0.
+	grupo resetearPozoComun. 
+	self assert: (grupo recaudacion) equals: 0.
+]
+
+{ #category : #tests }
+GrupoTest >> testRealizarDonacionEfectivo [
+ 	|numDonante|
+	numDonante := grupo 
+		altaDonante: 'nombre3' 
+		dni: 33333333 
+		telefono: 2345234565 
+		email: 'user3@gmail.com' 
+		legajo: 234564
+		contraseña: 'unaContraseña'.
+	organizacion1 agregarIntegrante: (grupo buscarDonantePorNumerodeDonante: numDonante).
+	grupo realizarDonacionEfectivo: numDonante para: organizacion1 cantidad: 400.0 paraEl: 12.
+	self assert: (organizacion1 donaciones size) equals: 1. 
+	self assert: (organizacion1 buscarDonacionesPorUsuario: (grupo buscarDonantePorNumerodeDonante: numDonante)) isNotEmpty. 
+	
+]
+
+{ #category : #tests }
+GrupoTest >> testRealizarDonacionPagoFacil [
+ 	|numDonante|
+	numDonante := grupo 
+		altaDonante: 'nombre3' 
+		dni: 33333333 
+		telefono: 2345234565 
+		email: 'user3@gmail.com' 
+		legajo: 234564
+		contraseña: 'unaContraseña'.
+	organizacion1 agregarIntegrante: (grupo buscarDonantePorNumerodeDonante: numDonante).
+	grupo realizarDonacionPagoFacil: numDonante para: organizacion1 cantidad: 400.0 paraEl: 12.
+	self assert: (organizacion1 donaciones size) equals: 1. 
+	self assert: (organizacion1 buscarDonacionesPorUsuario: (grupo buscarDonantePorNumerodeDonante: numDonante)) isNotEmpty. 
+	
+]
+
+{ #category : #tests }
+GrupoTest >> testRealizarDonacionTransfBancaria [
+ 	|numDonante|
+	numDonante := grupo 
+		altaDonante: 'nombre3' 
+		dni: 33333333 
+		telefono: 2345234565 
+		email: 'user3@gmail.com' 
+		legajo: 234564
+		contraseña: 'unaContraseña'.
+	organizacion1 agregarIntegrante: (grupo buscarDonantePorNumerodeDonante: numDonante).
+	grupo realizarDonacionTransferenciaBancaria: numDonante para: organizacion1 cantidad: 400.0 paraEl: 12.
+	self assert: (organizacion1 donaciones size) equals: 1. 
+	self assert: (organizacion1 buscarDonacionesPorUsuario: (grupo buscarDonantePorNumerodeDonante: numDonante)) isNotEmpty. 
 	
 ]
 
@@ -95,7 +172,22 @@ GrupoTest >> testRecibirColaboracion [
 ]
 
 { #category : #tests }
-GrupoTest >> testValidarAcceso [
+GrupoTest >> testValidarAccesoCoordinador [
+	|coordinadorPrueba|
+	coordinadorPrueba := Usuario
+		unNombre: 'unCoordinador' 
+		dni: 36544323 
+		telefono: 211435434 
+		email: 'Coordinador@gmail.com' 
+		legajo: 123124  
+		contraseña: 'contrPrueba'.
+	grupo cargaDeCoordinador: coordinadorPrueba.
+	self assert: (grupo coordinadores includes: coordinadorPrueba).
+	self assert: (grupo coordinador: 'Coordinador@gmail.com' protegidoPor: 'contrPrueba') equals: coordinadorPrueba.
+]
+
+{ #category : #tests }
+GrupoTest >> testValidarAccesoUsuario [
 	|numUsuario userPrueba|
 	numUsuario := grupo 
 		altaDonante: 'unNombre' 

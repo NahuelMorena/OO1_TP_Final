@@ -48,11 +48,6 @@ Grupo >> altaOrganizacion: unaDenominacion representante: unRepresentante direcc
 ]
 
 { #category : #initialization }
-Grupo >> buscarDonacionesPorUsuarioEnTodasLasOrganizaciones: unUsuario [ 
-	^self organizaciones select: [ :each | each buscarDonacionesPorUsuario: unUsuario ]
-]
-
-{ #category : #initialization }
 Grupo >> buscarDonantePorNumerodeDonante: nroDonante [
 	^self usuarios detect: [ :each | each identificar: nroDonante ]
 		ifNone: [ nil ]
