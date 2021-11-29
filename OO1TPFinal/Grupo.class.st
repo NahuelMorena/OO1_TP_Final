@@ -82,10 +82,10 @@ Grupo >> coordinadores [
 
 { #category : #initialization }
 Grupo >> initialize [
-	propuestas := OrderedCollection new.
-	organizaciones := OrderedCollection new.
-	coordinadores := OrderedCollection new. 
-	usuarios := OrderedCollection new.
+	propuestas := Set new.
+	organizaciones := Set new.
+	coordinadores := Set new. 
+	usuarios := Set new.
 	pozoComun := false.
 	recaudacion := 0
 ]

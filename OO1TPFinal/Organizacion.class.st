@@ -57,8 +57,8 @@ Organizacion >> donaciones [
 
 { #category : #initialization }
 Organizacion >> initialize [ 
-	integrantes := OrderedCollection new.
-	donaciones := OrderedCollection new.
+	integrantes := Set new.
+	donaciones := Set new.
 ]
 
 { #category : #accessing }

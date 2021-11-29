@@ -42,6 +42,44 @@ DonacionTest >> testAltaDonacionTransfBancaria [
 ]
 
 { #category : #tests }
+DonacionTest >> testDonador [
+	self assert: (efectivo donador) equals: 1001.
+	self assert: (pagoFacil donador) equals: 1001.
+	self assert: (transfBancaria donador) equals: 1001.
+	
+	
+]
+
+{ #category : #tests }
+DonacionTest >> testFecha [
+	self assert: (efectivo fecha) equals: Date today.
+	self assert: (pagoFacil fecha) equals: Date today.
+	self assert: (transfBancaria fecha) equals: Date today
+	
+	
+	
+]
+
+{ #category : #tests }
+DonacionTest >> testMesDelPago [
+	self assert: (efectivo mesDelPago) equals: 6.
+	self assert: (pagoFacil mesDelPago) equals: 6.
+	self assert: (transfBancaria mesDelPago) equals: 6
+	
+	
+	
+]
+
+{ #category : #tests }
+DonacionTest >> testMonto [
+	self assert: (efectivo monto) equals: 1000.
+	efectivo monto: 500.
+	self assert: (efectivo monto) equals: 500.
+	
+	
+]
+
+{ #category : #tests }
 DonacionTest >> testObtenerPagoSinComision [
 	self assert: (efectivo obtenerPagoSinComision) equals: 1000.0.
 	self assert: (pagoFacil obtenerPagoSinComision) equals: 1000.0.

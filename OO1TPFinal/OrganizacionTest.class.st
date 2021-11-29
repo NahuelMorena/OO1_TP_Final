@@ -89,6 +89,14 @@ OrganizacionTest >> testBuscarDonacionesPorUsuario [
 	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isNotEmpty.
 ]
 
+{ #category : #tests }
+OrganizacionTest >> testDireccion [
+	self assert: (organizacion direccion ) equals: 'unaDireccion'.
+	
+	
+	
+]
+
 { #category : #'as yet unclassified' }
 OrganizacionTest >> testObtenerDonacionesDeEsteMes [
 	|donacionPrueba|
@@ -111,4 +119,34 @@ OrganizacionTest >> testObtenerDonacionesEntreFechas [
 	fecha1 := Date newDay: 20 month: 8 year: 2021.
 	fecha2 := Date newDay: 10 month: 10 year: 2022.
 	self assert: (organizacion obtenerDonacionesEntre: fecha1 y: fecha2) equals: 1700.0.
+]
+
+{ #category : #tests }
+OrganizacionTest >> testRecibirDonacion [
+	|donacionPrueba|
+	self assert: (organizacion donaciones) size equals: 4.
+	donacionPrueba := Efectivo 
+		mesAPagar: Date today monthIndex
+		monto: 300.0 
+		numDonante: 1004.
+	organizacion recibirDonacion: donacionPrueba.
+	self assert: (organizacion donaciones) size equals: 5.
+	
+	
+]
+
+{ #category : #tests }
+OrganizacionTest >> testRepresentante [
+	self assert: (organizacion representante name ) equals: 'representante'.
+	
+	
+	
+]
+
+{ #category : #tests }
+OrganizacionTest >> testdenominacion [
+	self assert: (organizacion denominacion ) equals: 'unaDenominacion'.
+	
+	
+	
 ]
