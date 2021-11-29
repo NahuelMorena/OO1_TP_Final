@@ -34,7 +34,7 @@ CoordinatorHomeComponent >> collection: aCollection [
 CoordinatorHomeComponent >> donationList [
 	|aux|
 	aux := OrderedCollection new.
-	self model organizaciones do: [ :each | aux addAll: each donaciones].
+	self model organizaciones do: [ :each | aux addAll: each obtenerDonacionesDeEsteMes].
 	^aux.
 ]
 
@@ -96,7 +96,7 @@ CoordinatorHomeComponent >> renderDonationInThisMonthList: aCanvas [
 
 { #category : #rendering }
 CoordinatorHomeComponent >> renderDonationOn: aCanvas [
-	aCanvas heading  level: 2; with: 'Donaciones del sistema'.
+	aCanvas heading  level: 2; with: 'Donaciones del sistema de este mes'.
 	self renderDonationInThisMonthList: aCanvas.
 	self renderViewAllDonation: aCanvas.
 ]
@@ -107,6 +107,7 @@ CoordinatorHomeComponent >> renderInformation: aCanvas of: aDonation [
 	aCanvas text: 'Organización: ', (self searchOrganizationOf: aDonation) , ' ||| '.
 	aCanvas text: 'Monto: ', ((aDonation obtenerPagoSinComision) asString), ' ||| '.
 	aCanvas text: 'Mes asignado: ', aDonation mesDelPago, ' ||| '.
+	aCanvas text: 'Fecha de realización: ', aDonation fecha asString, ' ||| '.
 	aCanvas horizontalRule.
 	
 ]

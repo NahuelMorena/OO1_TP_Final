@@ -202,7 +202,7 @@ DonationComponent >> renderFormMonthOn: aCanvas [
 		aCanvas label: 'Mes a buscar'.
 		aCanvas paragraph: [ aCanvas numberInput on: #month of: self ].
 		aCanvas submitButton 
-			with: 'Calcular monto obtenido'.
+			with: 'Buscar donaciones por mes'.
 	].
 	(self month) ifNotNil: [ self renderResultFilterByMonth: aCanvas ].
 ]
