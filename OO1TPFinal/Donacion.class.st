@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'mesDelPago',
-		'monto',
+		'pago',
 		'donador',
 		'fecha'
 	],
@@ -14,7 +14,15 @@ Class {
 Donacion class >> mesAPagar: unMes monto: unMonto numDonante: unNumDonante [
 	^self new
 		mesAPagar: unMes 
-		monto: unMonto 
+		monto: unMonto
+		numDonante: unNumDonante.
+]
+
+{ #category : #'as yet unclassified' }
+Donacion class >> mesAPagar: unMes pago: unPago numDonante: unNumDonante [
+	^self new
+		mesAPagar: unMes 
+		pago: unPago
 		numDonante: unNumDonante.
 ]
 
@@ -40,10 +48,10 @@ Donacion >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-Donacion >> mesAPagar: unMes monto: unMonto numDonante: unNumDonante [ 
+Donacion >> mesAPagar: unMes pago: unPago numDonante: unNumDonante [ 
 	mesDelPago:= unMes.
 	donador:= unNumDonante.
-	self pagoConComision: unMonto.
+	pago:= unPago. 
 ]
 
 { #category : #accessing }
@@ -52,27 +60,12 @@ Donacion >> mesDelPago [
 ]
 
 { #category : #accessing }
-Donacion >> monto [
-	^monto
-]
-
-{ #category : #accessing }
-Donacion >> monto: unMonto [
-	monto:= unMonto
-]
-
-{ #category : #accessing }
 Donacion >> montoDeDonacionesEntre: unafecha y: otraFecha [
-	(self fecha between: unafecha and: otraFecha) ifTrue: [ ^self obtenerPagoSinComision ].
+	(self fecha between: unafecha and: otraFecha) ifTrue: [ ^(self pago obtenerPagoSinComision) ].
 	^0
 ]
 
-{ #category : #'as yet unclassified' }
-Donacion >> obtenerPagoSinComision [
-	^self subclassResponsibility
-]
-
-{ #category : #'as yet unclassified' }
-Donacion >> pagoConComision: unMonto [
-	^self subclassResponsibility
+{ #category : #accessing }
+Donacion >> pago [
+	^pago
 ]

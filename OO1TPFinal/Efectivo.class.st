@@ -1,6 +1,6 @@
 Class {
 	#name : #Efectivo,
-	#superclass : #Donacion,
+	#superclass : #TipoDePago,
 	#category : #'OO1TPFinal-model'
 }
 

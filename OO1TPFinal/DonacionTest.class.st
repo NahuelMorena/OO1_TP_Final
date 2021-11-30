@@ -2,59 +2,57 @@ Class {
 	#name : #DonacionTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'efectivo',
-		'pagoFacil',
-		'transfBancaria'
+		'donacionEfectivo',
+		'donacionPagoFacil',
+		'donacionTransfBancaria',
+		'pagoEfectivo',
+		'pagoTransfBancaria',
+		'pagoDePagoFacil'
 	],
 	#category : #'OO1TPFinal-tests'
 }
 
+{ #category : #'as yet unclassified' }
+DonacionTest >> altaDonacionesTest [
+	donacionEfectivo := Donacion mesAPagar: 6 pago: pagoEfectivo numDonante: 1001.
+	donacionPagoFacil := Donacion mesAPagar: 6 pago: pagoDePagoFacil numDonante: 1001. 
+   donacionTransfBancaria := Donacion mesAPagar: 6 pago: pagoTransfBancaria numDonante: 1001.
+]
+
+{ #category : #'as yet unclassified' }
+DonacionTest >> altaPagosTest [
+	pagoEfectivo := Efectivo montoAPagar: 1000.
+	pagoTransfBancaria := TransfBancaria montoAPagar: 1000.
+	pagoDePagoFacil := PagoFacil montoAPagar: 1000.
+]
+
 { #category : #tests }
 DonacionTest >> setUp [ 
-	efectivo := Efectivo mesAPagar: 6 monto: 1000 numDonante: 1001.
-	pagoFacil := PagoFacil mesAPagar: 6 monto: 1000 numDonante: 1001.
-	transfBancaria := TransfBancaria mesAPagar: 6 monto: 1000 numDonante: 1001.
+	self altaPagosTest.
+	self altaDonacionesTest
 	
 
 ]
 
 { #category : #tests }
 DonacionTest >> testActualYear [
-	self assert: efectivo actualYear.
-]
-
-{ #category : #tests }
-DonacionTest >> testAltaDonacionEfectivo [
-	self assert: (efectivo monto) equals: 1000.
-	self assert: (efectivo obtenerPagoSinComision) equals: 1000. 
-]
-
-{ #category : #tests }
-DonacionTest >> testAltaDonacionPagoFacil [
-	self assert: (pagoFacil monto) equals: 1150. 
-	self assert: (pagoFacil obtenerPagoSinComision) equals: 1000.
-]
-
-{ #category : #tests }
-DonacionTest >> testAltaDonacionTransfBancaria [
-	self assert: (transfBancaria monto) equals: 1100.
-	self assert: (transfBancaria obtenerPagoSinComision) equals: 1000 
+	self assert: donacionEfectivo actualYear.
 ]
 
 { #category : #tests }
 DonacionTest >> testDonador [
-	self assert: (efectivo donador) equals: 1001.
-	self assert: (pagoFacil donador) equals: 1001.
-	self assert: (transfBancaria donador) equals: 1001.
+	self assert: (donacionEfectivo donador) equals: 1001.
+	self assert: (donacionPagoFacil donador) equals: 1001.
+	self assert: (donacionTransfBancaria donador) equals: 1001.
 	
 	
 ]
 
 { #category : #tests }
 DonacionTest >> testFecha [
-	self assert: (efectivo fecha) equals: Date today.
-	self assert: (pagoFacil fecha) equals: Date today.
-	self assert: (transfBancaria fecha) equals: Date today
+	self assert: (donacionEfectivo fecha) equals: Date today.
+	self assert: (donacionPagoFacil fecha) equals: Date today.
+	self assert: (donacionTransfBancaria fecha) equals: Date today
 	
 	
 	
@@ -62,40 +60,9 @@ DonacionTest >> testFecha [
 
 { #category : #tests }
 DonacionTest >> testMesDelPago [
-	self assert: (efectivo mesDelPago) equals: 6.
-	self assert: (pagoFacil mesDelPago) equals: 6.
-	self assert: (transfBancaria mesDelPago) equals: 6
-	
-	
-	
-]
-
-{ #category : #tests }
-DonacionTest >> testMonto [
-	self assert: (efectivo monto) equals: 1000.
-	efectivo monto: 500.
-	self assert: (efectivo monto) equals: 500.
-	
-	
-]
-
-{ #category : #tests }
-DonacionTest >> testObtenerPagoSinComision [
-	self assert: (efectivo obtenerPagoSinComision) equals: 1000.0.
-	self assert: (pagoFacil obtenerPagoSinComision) equals: 1000.0.
-	self assert: (transfBancaria obtenerPagoSinComision) equals: 1000.0.
-	
-	
-]
-
-{ #category : #tests }
-DonacionTest >> testPagoConComision [
-	efectivo pagoConComision: 1000.
-	self assert: (efectivo monto) equals: 1000.
-	pagoFacil pagoConComision: 1000.
-	self assert: (pagoFacil monto) equals: 1150.0.
-	transfBancaria pagoConComision: 1000.
-	self assert: (transfBancaria monto) equals: 1100.0.
+	self assert: (donacionEfectivo mesDelPago) equals: 6.
+	self assert: (donacionPagoFacil mesDelPago) equals: 6.
+	self assert: (donacionTransfBancaria mesDelPago) equals: 6
 	
 	
 	

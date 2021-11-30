@@ -111,18 +111,8 @@ Grupo >> propuestas [
 ]
 
 { #category : #initialization }
-Grupo >> realizarDonacionEfectivo: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (Efectivo mesAPagar: unMes monto: unMonto numDonante: nroDonante).
-]
-
-{ #category : #initialization }
-Grupo >> realizarDonacionPagoFacil: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (PagoFacil  mesAPagar: unMes monto: unMonto numDonante: nroDonante).
-]
-
-{ #category : #initialization }
-Grupo >> realizarDonacionTransferenciaBancaria: nroDonante para: unaOrganizacion cantidad: unMonto paraEl: unMes [
-	unaOrganizacion recibirDonacion: (TransfBancaria mesAPagar: unMes monto:unMonto numDonante: nroDonante).
+Grupo >> realizarDonacion: nroDonante para: unaOrganizacion pago: unPago paraEl: unMes [
+	unaOrganizacion recibirDonacion: (Donacion mesAPagar: unMes pago: unPago numDonante: nroDonante).
 ]
 
 { #category : #accessing }

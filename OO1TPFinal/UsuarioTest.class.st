@@ -9,7 +9,12 @@ Class {
 
 { #category : #running }
 UsuarioTest >> setUp [
-	user := Usuario unNombre: 'unNombre' dni: 22222222 telefono: 221345465 email: 'unEmail@gmail.com' legajo: 123234 contraseña: 'unaContraseña'.
+	user := Usuario unNombre: 'unNombre' 
+						dni: 22222222 
+						telefono: 221345465 
+						email: 'unEmail@gmail.com' 
+						legajo: 123234 
+						contraseña: 'unaContraseña'.
 	
 
 ]

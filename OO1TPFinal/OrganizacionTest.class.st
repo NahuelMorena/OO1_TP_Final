@@ -4,7 +4,11 @@ Class {
 	#instVars : [
 		'organizacion',
 		'user1',
-		'user2'
+		'user2',
+		'pagoEfectivo',
+		'pagoTransfBancaria',
+		'pagoDePagoFacil',
+		'pagoDePagoFacil2'
 	],
 	#category : #'OO1TPFinal-tests'
 }
@@ -12,21 +16,21 @@ Class {
 { #category : #'as yet unclassified' }
 OrganizacionTest >> altaDonacionesTest [
 	|donacionEfectivo donacionPagoFacil donacionPagoFacil2 donacionTransfBancaria|
-	donacionEfectivo := Efectivo 
+	donacionEfectivo := Donacion
 		mesAPagar: 3
-		monto: 300.0 
+		pago: pagoEfectivo 
 		numDonante: 2004.
-	donacionPagoFacil := PagoFacil 
+	donacionPagoFacil := Donacion 
 		mesAPagar: 4 
-		monto: 450.0 
+		pago: pagoDePagoFacil 
 		numDonante: 2006.
-	donacionTransfBancaria := TransfBancaria 
+	donacionTransfBancaria := Donacion 
 		mesAPagar: 5
-		monto: 500.0 
+		pago: pagoTransfBancaria 
 		numDonante: 2004.
-	donacionPagoFacil2 := PagoFacil 
+	donacionPagoFacil2 := Donacion 
 		mesAPagar: 3
-		monto: 450.0 
+		pago: pagoDePagoFacil2  
 		numDonante: 2006.
 	organizacion recibirDonacion: donacionEfectivo.
 	organizacion recibirDonacion: donacionTransfBancaria.
@@ -54,6 +58,14 @@ OrganizacionTest >> altaDonanteTest [
 	organizacion agregarIntegrante: user2
 ]
 
+{ #category : #'as yet unclassified' }
+OrganizacionTest >> altaPagosTest [
+	pagoEfectivo := Efectivo montoAPagar: 300.0.
+	pagoTransfBancaria := TransfBancaria montoAPagar: 450.0.
+	pagoDePagoFacil := PagoFacil montoAPagar: 500.0.
+	pagoDePagoFacil2 := PagoFacil montoAPagar: 450.0.
+]
+
 { #category : #running }
 OrganizacionTest >> setUp [
 	|representante|
@@ -61,6 +73,7 @@ OrganizacionTest >> setUp [
 		telefono: 2227999999 email: 'representante@gmail.com' legajo: 999999 contraseña: 'contraseñaRepre'. 
 	organizacion := Organizacion denominacion: 'unaDenominacion' 
 		representante: representante direccion: 'unaDireccion'.
+	self altaPagosTest.
 	self altaDonanteTest. 
 	self altaDonacionesTest.
 
@@ -68,7 +81,7 @@ OrganizacionTest >> setUp [
 
 { #category : #tests }
 OrganizacionTest >> testBuscarDonacionesPorUsuario [
-	|usuarioABuscar donacionDePrueba| 
+	|usuarioABuscar donacionDePrueba pagoEfectivoPrueba| 
 	usuarioABuscar := Usuario
 		unNombre: 'nombreEjemplo' 
 		dni: 44444444 
@@ -80,9 +93,10 @@ OrganizacionTest >> testBuscarDonacionesPorUsuario [
 	self assert: (organizacion integrantes) size equals: 3.
 	self assert: (organizacion buscarDonacionesPorUsuario: usuarioABuscar) isEmpty.
 	self assert: (organizacion donaciones) size equals: 4.
-	donacionDePrueba := Efectivo 
+	pagoEfectivoPrueba := Efectivo montoAPagar: 300.0.
+	donacionDePrueba := Donacion
 		mesAPagar: 3
-		monto: 300.0 
+		pago: pagoEfectivoPrueba 
 		numDonante: (usuarioABuscar obtenerIdentificacion).
 	organizacion recibirDonacion: donacionDePrueba.
 	self assert: (organizacion donaciones) size equals: 5.
@@ -99,11 +113,12 @@ OrganizacionTest >> testDireccion [
 
 { #category : #'as yet unclassified' }
 OrganizacionTest >> testObtenerDonacionesDeEsteMes [
-	|donacionPrueba|
+	|donacionPrueba pagoEfectivoPrueba |
 	self assert: (organizacion obtenerDonacionesDeEsteMes) isEmpty.
-	donacionPrueba := Efectivo 
+	pagoEfectivoPrueba := Efectivo montoAPagar: 300.0.
+	donacionPrueba := Donacion 
 		mesAPagar: Date today monthIndex
-		monto: 300.0 
+		pago: pagoEfectivoPrueba
 		numDonante: 1004.
 	organizacion recibirDonacion: donacionPrueba.
 	self assert: (organizacion obtenerDonacionesDeEsteMes) isNotEmpty.
@@ -123,11 +138,12 @@ OrganizacionTest >> testObtenerDonacionesEntreFechas [
 
 { #category : #tests }
 OrganizacionTest >> testRecibirDonacion [
-	|donacionPrueba|
+	|donacionPrueba pagoEfectivoPrueba |
 	self assert: (organizacion donaciones) size equals: 4.
-	donacionPrueba := Efectivo 
+	pagoEfectivoPrueba := Efectivo montoAPagar: 300.0.
+	donacionPrueba := Donacion  
 		mesAPagar: Date today monthIndex
-		monto: 300.0 
+		pago: pagoEfectivoPrueba 
 		numDonante: 1004.
 	organizacion recibirDonacion: donacionPrueba.
 	self assert: (organizacion donaciones) size equals: 5.

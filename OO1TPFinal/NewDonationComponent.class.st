@@ -11,21 +11,13 @@ Class {
 
 { #category : #'as yet unclassified' }
 NewDonationComponent >> bankPaymentMethod [
-	self model realizarDonacionTransferenciaBancaria: (self session user obtenerIdentificacion ) 
-				  para: (self organization) 
-				  cantidad: (self money) 
-				  paraEl: (self month).
-	self answer.
+	self doPaymentMethod: (TransfBancaria montoAPagar: (self money))
 	
 ]
 
 { #category : #'as yet unclassified' }
 NewDonationComponent >> cashPaymentMethod [
-	self model realizarDonacionEfectivo: (self session user obtenerIdentificacion ) 
-				  para: (self organization)  
-				  cantidad: (self money) 
-				  paraEl: (self month).
-	self answer.
+	self doPaymentMethod: (Efectivo montoAPagar: (self money))
 ]
 
 { #category : #accessing }
@@ -35,12 +27,17 @@ NewDonationComponent >> deleteInformation [
 ]
 
 { #category : #'as yet unclassified' }
-NewDonationComponent >> easyPaymentMethod [
-	self model realizarDonacionPagoFacil: (self session user obtenerIdentificacion ) 
+NewDonationComponent >> doPaymentMethod: aPayment [
+	self model realizarDonacion: (self session user obtenerIdentificacion ) 
 				  para: (self organization) 
-				  cantidad: (self money) 
+				  pago: aPayment
 				  paraEl: (self month).
 	self answer.
+]
+
+{ #category : #'as yet unclassified' }
+NewDonationComponent >> easyPaymentMethod [
+	self doPaymentMethod: (PagoFacil montoAPagar: (self money))
 ]
 
 { #category : #accessing }

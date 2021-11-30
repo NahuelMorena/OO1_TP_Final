@@ -102,8 +102,8 @@ GrupoTest >> testCargarMonto [
 ]
 
 { #category : #tests }
-GrupoTest >> testRealizarDonacionEfectivo [
- 	|numDonante|
+GrupoTest >> testRealizarDonacion [
+ 	|numDonante pagoEfectivo|
 	numDonante := grupo 
 		altaDonante: 'nombre3' 
 		dni: 33333333 
@@ -112,43 +112,16 @@ GrupoTest >> testRealizarDonacionEfectivo [
 		legajo: 234564
 		contraseña: 'unaContraseña'.
 	organizacion1 agregarIntegrante: (grupo buscarDonantePorNumerodeDonante: numDonante).
-	grupo realizarDonacionEfectivo: numDonante para: organizacion1 cantidad: 400.0 paraEl: 12.
+	pagoEfectivo := Efectivo montoAPagar: 400.0.
+	grupo realizarDonacion: numDonante para: organizacion1 pago: pagoEfectivo paraEl: 12.
 	self assert: (organizacion1 donaciones size) equals: 1. 
 	self assert: (organizacion1 buscarDonacionesPorUsuario: (grupo buscarDonantePorNumerodeDonante: numDonante)) isNotEmpty. 
-	
-]
-
-{ #category : #tests }
-GrupoTest >> testRealizarDonacionPagoFacil [
- 	|numDonante|
-	numDonante := grupo 
-		altaDonante: 'nombre3' 
-		dni: 33333333 
-		telefono: 2345234565 
-		email: 'user3@gmail.com' 
-		legajo: 234564
-		contraseña: 'unaContraseña'.
-	organizacion1 agregarIntegrante: (grupo buscarDonantePorNumerodeDonante: numDonante).
-	grupo realizarDonacionPagoFacil: numDonante para: organizacion1 cantidad: 400.0 paraEl: 12.
-	self assert: (organizacion1 donaciones size) equals: 1. 
-	self assert: (organizacion1 buscarDonacionesPorUsuario: (grupo buscarDonantePorNumerodeDonante: numDonante)) isNotEmpty. 
-	
-]
-
-{ #category : #tests }
-GrupoTest >> testRealizarDonacionTransfBancaria [
- 	|numDonante|
-	numDonante := grupo 
-		altaDonante: 'nombre3' 
-		dni: 33333333 
-		telefono: 2345234565 
-		email: 'user3@gmail.com' 
-		legajo: 234564
-		contraseña: 'unaContraseña'.
-	organizacion1 agregarIntegrante: (grupo buscarDonantePorNumerodeDonante: numDonante).
-	grupo realizarDonacionTransferenciaBancaria: numDonante para: organizacion1 cantidad: 400.0 paraEl: 12.
-	self assert: (organizacion1 donaciones size) equals: 1. 
-	self assert: (organizacion1 buscarDonacionesPorUsuario: (grupo buscarDonantePorNumerodeDonante: numDonante)) isNotEmpty. 
+	pagoEfectivo := PagoFacil montoAPagar: 500.0.
+	grupo realizarDonacion: numDonante para: organizacion1 pago: pagoEfectivo paraEl: 12.
+	self assert: (organizacion1 donaciones size) equals: 2. 
+	pagoEfectivo := TransfBancaria montoAPagar: 450.0.
+	grupo realizarDonacion: numDonante para: organizacion1 pago: pagoEfectivo paraEl: 12.
+	self assert: (organizacion1 donaciones size) equals: 3. 
 	
 ]
 

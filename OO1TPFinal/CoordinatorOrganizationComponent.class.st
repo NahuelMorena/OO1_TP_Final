@@ -52,6 +52,6 @@ CoordinatorOrganizationComponent >> renderDonationList: aCanvas [
 { #category : #rendering }
 CoordinatorOrganizationComponent >> renderInformationOnList: aCanvas donation: aDonation [ 
 	aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (aDonation donador)) name, ' ||| '.
-		aCanvas text: 'Monto: ', ((aDonation obtenerPagoSinComision) asString), ' ||| '.
+		aCanvas text: 'Monto: ', ((aDonation pago obtenerPagoSinComision) asString), ' ||| '.
 		aCanvas text: 'Mes asignado: ', aDonation mesDelPago, ' ||| '.
 ]

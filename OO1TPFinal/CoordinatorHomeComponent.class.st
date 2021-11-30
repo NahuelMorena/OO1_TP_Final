@@ -105,7 +105,7 @@ CoordinatorHomeComponent >> renderDonationOn: aCanvas [
 CoordinatorHomeComponent >> renderInformation: aCanvas of: aDonation [
 	aCanvas text: 'Donador: ', (self model buscarDonantePorNumerodeDonante: (aDonation donador)) name, ' ||| '.
 	aCanvas text: 'Organización: ', (self searchOrganizationOf: aDonation) , ' ||| '.
-	aCanvas text: 'Monto: ', ((aDonation obtenerPagoSinComision) asString), ' ||| '.
+	aCanvas text: 'Monto: ', ((aDonation pago obtenerPagoSinComision) asString), ' ||| '.
 	aCanvas text: 'Mes asignado: ', aDonation mesDelPago, ' ||| '.
 	aCanvas text: 'Fecha de realización: ', aDonation fecha asString, ' ||| '.
 	aCanvas horizontalRule.
