@@ -156,17 +156,7 @@ DonationComponent >> renderAmountResultOn: aCanvas [
 DonationComponent >> renderCalculateAmount: aCanvas [
 	aCanvas heading  level: 2; with: 'Calcular monto obtenido entre fechas'.
 	aCanvas form: [ 
-		aCanvas label: 'Dia-mes-año de fecha inicial '.
-		aCanvas paragraph: [ aCanvas numberInput on: #initialDay of: self ].
-		aCanvas paragraph: [ aCanvas numberInput on: #initialMonth of: self ].
-		aCanvas paragraph: [ aCanvas numberInput on: #initialYear of: self ].
-		aCanvas label: 'Dia-mes-año de fecha final'.
-		aCanvas paragraph: [ aCanvas numberInput on: #finalDay of: self ].
-		aCanvas paragraph: [ aCanvas numberInput on: #finalMonth of: self ].
-		aCanvas paragraph: [ aCanvas numberInput on: #finalYear of: self ].
-		aCanvas submitButton 
-			callback: [ self calculateAmount ];
-			with: 'Calcular monto obtenido'.
+		self renderFormInformation: aCanvas.
 	].
 	self renderAmountResultOn: aCanvas.
 
@@ -194,6 +184,22 @@ DonationComponent >> renderDonorsList: aCanvas [.
 			aCanvas horizontalRule.
 			]
 		]
+]
+
+{ #category : #rendering }
+DonationComponent >> renderFormInformation: aCanvas [
+	aCanvas label: 'Dia-mes-año de fecha inicial '.
+	aCanvas paragraph: [ aCanvas numberInput on: #initialDay of: self ].
+	aCanvas paragraph: [ aCanvas numberInput on: #initialMonth of: self ].
+	aCanvas paragraph: [ aCanvas numberInput on: #initialYear of: self ].
+	aCanvas label: 'Dia-mes-año de fecha final'.
+	aCanvas paragraph: [ aCanvas numberInput on: #finalDay of: self ].
+	aCanvas paragraph: [ aCanvas numberInput on: #finalMonth of: self ].
+	aCanvas paragraph: [ aCanvas numberInput on: #finalYear of: self ].
+	aCanvas submitButton 
+		callback: [ self calculateAmount ];
+		with: 'Calcular monto obtenido'.
+		
 ]
 
 { #category : #'as yet unclassified' }

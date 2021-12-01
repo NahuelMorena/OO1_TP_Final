@@ -53,19 +53,31 @@ CoordinatorProfileComponent >> renderContentOn: aCanvas [
 	self renderReturnButton: aCanvas
 ]
 
+{ #category : #accessing }
+CoordinatorProfileComponent >> renderDonationInformation: aCanvas of: aDonation [
+	aCanvas text: 'Donador: ', (self user) name, ' ||| '.
+	aCanvas text: 'Monto: ', ((aDonation obtenerPagoSinComision) asString), ' ||| '.
+	aCanvas text: 'Mes asignado: ', aDonation mesDelPago, ' ||| '.
+	aCanvas break.
+	
+]
+
 { #category : #rendering }
 CoordinatorProfileComponent >> renderDonationList: aCanvas [
 	aCanvas heading level2; with: 'Donaciones del usuario que presenta en lo que va del año'.
 	aCanvas unorderedList: [ (self model organizaciones ) do: [ :each | 
-			(each buscarDonacionesPorUsuario: (self user)) do: [  :each2 |  
-					self renderOrganizationName: aCanvas of: each.
-					aCanvas text: 'Donador: ', (self user) name, ' ||| '.
-					aCanvas text: 'Monto: ', ((each2 obtenerPagoSinComision) asString), ' ||| '.
-					aCanvas text: 'Mes asignado: ', each2 mesDelPago, ' ||| '.
-					aCanvas break.
-			].
+			self renderOrganizationInformation: aCanvas of: each.
 			self title: nil.
-			aCanvas horizontalRule.]]
+			aCanvas horizontalRule.]
+	]
+]
+
+{ #category : #accessing }
+CoordinatorProfileComponent >> renderOrganizationInformation: aCanvas of: anOrganization [ 
+	(anOrganization buscarDonacionesPorUsuario: (self user)) do: [  :each2 |  
+					self renderOrganizationName: aCanvas of: anOrganization.
+					self renderDonationInformation: aCanvas of: each2.
+			].
 ]
 
 { #category : #accessing }

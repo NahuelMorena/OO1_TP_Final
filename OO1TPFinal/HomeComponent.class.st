@@ -41,7 +41,8 @@ HomeComponent >> organizationsList [
 
 { #category : #accessing }
 HomeComponent >> profileView [
-	self call: ProfileComponent new.
+	 self call: ProfileComponent new  
+	
 ]
 
 { #category : #'as yet unclassified' }

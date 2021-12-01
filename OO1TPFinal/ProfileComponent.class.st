@@ -52,7 +52,7 @@ ProfileComponent >> renderContentOn: aCanvas [
 	aCanvas heading: 'Perfil de ', self name.
 	aCanvas horizontalRule.
 	self renderInformationOn: aCanvas.
-	self renderOrganizationFollowList: aCanvas.
+	self renderOrganizationIfIsCoordinator: aCanvas.
 	aCanvas break.
 	self renderReturnButton: aCanvas.
 ]
@@ -80,6 +80,12 @@ ProfileComponent >> renderOrganizationFollowList: aCanvas [
 	(self organizationList)
 		do: [ :each | aCanvas text: each denominacion, ' ||| '. ]
 	
+]
+
+{ #category : #rendering }
+ProfileComponent >> renderOrganizationIfIsCoordinator: aCanvas [
+	(self model coordinadores includes: (self session user)) 
+			ifFalse: [ self renderOrganizationFollowList: aCanvas. ].
 ]
 
 { #category : #rendering }

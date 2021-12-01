@@ -41,17 +41,15 @@ CoordinatorOrganizationComponent >> model [
 { #category : #accessing }
 CoordinatorOrganizationComponent >> renderContentOn: aCanvas [
 	self renderCommonOn: aCanvas.
-	aCanvas heading level2; with: 'Donaciones de esta organización de este mes'.
 	self renderDonationInThisMonthList: aCanvas.
-	aCanvas heading level2; with: 'Demas donaciones de la organización'.
 	self renderDonationList: aCanvas.
-	aCanvas heading level2; with: 'Donaciones organizada por donantes'.
 	self renderDonorList: aCanvas.
 	self renderReturnButton: aCanvas.
 ]
 
 { #category : #rendering }
 CoordinatorOrganizationComponent >> renderDonationInThisMonthList: aCanvas [
+	aCanvas heading level2; with: 'Donaciones de esta organización de este mes'.
 	aCanvas unorderedList: [ (self donationInThisMonthList ) do: [ :each | 
 		self renderInformationOnList: aCanvas donation: each.
 		aCanvas horizontalRule.
@@ -62,6 +60,7 @@ CoordinatorOrganizationComponent >> renderDonationInThisMonthList: aCanvas [
 
 { #category : #rendering }
 CoordinatorOrganizationComponent >> renderDonationList: aCanvas [
+	aCanvas heading level2; with: 'Demas donaciones de la organización'.
 	aCanvas unorderedList: [ (self donationList ) do: [ :each | 
 		self renderInformationOnList: aCanvas donation: each.
 		aCanvas horizontalRule.
@@ -71,6 +70,7 @@ CoordinatorOrganizationComponent >> renderDonationList: aCanvas [
 
 { #category : #rendering }
 CoordinatorOrganizationComponent >> renderDonorList: aCanvas [
+	aCanvas heading level2; with: 'Donaciones organizada por donantes'.
 	aCanvas unorderedList: [ (self getDonationInOrder ) do: [ :each | 
 			self identifyDonor: aCanvas of: each.
 			self renderInformationOnList: aCanvas donation: each.

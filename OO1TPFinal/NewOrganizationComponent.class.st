@@ -46,15 +46,20 @@ NewOrganizationComponent >> registerNewOrganization [
 { #category : #rendering }
 NewOrganizationComponent >> renderContentOn: aCanvas [
 	aCanvas heading: 'Nueva Organización'.
-	aCanvas form: [  
-		self renderInputElementsOn: aCanvas.
-		self renderRegisterButtonOn: aCanvas.].
-	aCanvas break.
+	self renderFormOrganizationOn: aCanvas.
 	aCanvas break.
 	aCanvas text: 
 		'La organización creada debera ser aprobada por un coordinador antes de aparecer en el sistema.'.
 	self renderReturnButton: aCanvas.
 	
+]
+
+{ #category : #rendering }
+NewOrganizationComponent >> renderFormOrganizationOn: aCanvas [
+	aCanvas form: [  
+		self renderInputElementsOn: aCanvas.
+		self renderRegisterButtonOn: aCanvas.].
+	aCanvas break.
 ]
 
 { #category : #rendering }

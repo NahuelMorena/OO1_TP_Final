@@ -95,12 +95,7 @@ NewDonationComponent >> renderCashPaymentMethodOn: aCanvas [
 NewDonationComponent >> renderContentOn: aCanvas [
 	aCanvas heading: 'Realizar donación a ', organization denominacion.
 	aCanvas heading  level: 2; with: 'Dirección: ', organization direccion.
-	(self money) 
-		ifNil: [ self renderDonateFormOn: aCanvas. ] 
-		ifNotNil: [ aCanvas text: 'Selecciona metodo de pago para donar $', (self money asString) ,' para el mes: ', self month.
-						aCanvas horizontalRule.
-						aCanvas break.
-						self renderPaymentMethods: aCanvas].
+	self renderSelectPaymentMethods: aCanvas.
 	aCanvas horizontalRule.
 	aCanvas break. 
 	self renderDeleteInformation: aCanvas.
@@ -157,4 +152,16 @@ NewDonationComponent >> renderReturnButton: aCanvas [
 	
 	
 	
+]
+
+{ #category : #rendering }
+NewDonationComponent >> renderSelectPaymentMethods: aCanvas [
+	(self money) 
+		ifNil: [ self renderDonateFormOn: aCanvas. ] 
+		ifNotNil: [ 
+			aCanvas text: 
+			'Selecciona metodo de pago para donar $', (self money asString) ,' para el mes: ', self month.
+						aCanvas horizontalRule.
+						aCanvas break.
+						self renderPaymentMethods: aCanvas].
 ]
