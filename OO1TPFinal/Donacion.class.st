@@ -11,14 +11,6 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-Donacion class >> mesAPagar: unMes monto: unMonto numDonante: unNumDonante [
-	^self new
-		mesAPagar: unMes 
-		monto: unMonto
-		numDonante: unNumDonante.
-]
-
-{ #category : #'as yet unclassified' }
 Donacion class >> mesAPagar: unMes pago: unPago numDonante: unNumDonante [
 	^self new
 		mesAPagar: unMes 
