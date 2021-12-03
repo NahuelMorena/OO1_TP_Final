@@ -45,13 +45,18 @@ HomeComponent >> profileView [
 	
 ]
 
-{ #category : #'as yet unclassified' }
-HomeComponent >> renderCollectionFormOn: aCanvas [
+{ #category : #rendering }
+HomeComponent >> renderCollectionFormInformation: aCanvas [
 	aCanvas heading  level: 2; with: 'Pozo común'. 
 	aCanvas label: '¿Realizar donación al Pozo Común?'.
 	aCanvas break.
 	aCanvas label: 'Objetivo a recaudar: ', self model pozoComun objetivoPozo asString, ' ||| Recaudado: ', self model pozoComun recaudacion asString.
 	aCanvas break. aCanvas break.
+]
+
+{ #category : #'as yet unclassified' }
+HomeComponent >> renderCollectionFormOn: aCanvas [
+	self renderCollectionFormInformation: aCanvas. 
 	aCanvas form: [ 
 		aCanvas label: 'Monto a donar'.
 		aCanvas paragraph: [ aCanvas numberInput on: #donation of: self ].
@@ -85,21 +90,30 @@ HomeComponent >> renderContentOn: aCanvas [
 
 { #category : #'as yet unclassified' }
 HomeComponent >> renderDonateCollectionOn: aCanvas [
-	(self model pozoComun pozoIncompleto) 
-		ifTrue: [  self renderCollectionFormOn: aCanvas. ]
+	(self model pozoComun) 
+		ifNotNil: [ 
+			(self model pozoComun pozoIncompleto) 
+				ifTrue: [  self renderCollectionFormOn: aCanvas. ]
+		] 
+	
+]
+
+{ #category : #rendering }
+HomeComponent >> renderOrganizationInformation: aCanvas of: anOrganization [
+	aCanvas paragraph: [ aCanvas anchor
+		callback: [ self showOrganization: anOrganization ];
+		with: anOrganization denominacion.
+	].
+	aCanvas text: 'Representante: ', anOrganization representante name, ' ||| '.
+	aCanvas text: 'Direccion: ', anOrganization direccion, ' ||| '.
+	aCanvas horizontalRule.
 ]
 
 { #category : #rendering }
 HomeComponent >> renderOrganizationsList: aCanvas [
 	aCanvas 
 		unorderedList: [ (self organizationsList ) do: [ :each | 
-			aCanvas paragraph: [ aCanvas anchor
-				callback: [ self showOrganization: each ];
-				with: each denominacion.
-			].
-			aCanvas text: 'Representante: ', each representante name, ' ||| '.
-			aCanvas text: 'Direccion: ', each direccion, ' ||| '.
-			aCanvas horizontalRule.
+			self renderOrganizationInformation: aCanvas of: each.
 		]
 	]
 		
