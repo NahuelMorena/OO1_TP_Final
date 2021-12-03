@@ -57,22 +57,9 @@ CoordinatorHomeComponent >> renderActivateCollectionOn: aCanvas [
 { #category : #rendering }
 CoordinatorHomeComponent >> renderCollectionOn: aCanvas [
 	aCanvas heading  level: 2; with: 'Pozo en común'.
-	(self model pozoComun)
-		ifTrue: [ self renderStatusCollectionOn: aCanvas ]
-		ifFalse: [ (self model recaudacion == 0)
-					ifTrue: [ self renderActivateCollectionOn: aCanvas. ]
-					ifFalse: [ self renderCollectionResultOn: aCanvas ].			
-		].
-]
-
-{ #category : #rendering }
-CoordinatorHomeComponent >> renderCollectionResultOn: aCanvas [
-	aCanvas label: 'Recaudación obtenida: ', self model recaudacion asString.
-	aCanvas label: ' ||| Objetivo de la recaudación: ', self model objetivoPozo asString,' ||| '.
-	aCanvas anchor 
-      callback: [ self resetCollection ];
-      with: [ aCanvas button: 'Resetear pozo en común'].
-	
+	(self model pozoComunActivado)
+		ifTrue: [ self renderStatusCollectionOn: aCanvas]
+		ifFalse: [ self renderActivateCollectionOn: aCanvas. ].
 ]
 
 { #category : #rendering }
@@ -145,9 +132,13 @@ CoordinatorHomeComponent >> renderProposedOrganizations: aCanvas [
 { #category : #'as yet unclassified' }
 CoordinatorHomeComponent >> renderStatusCollectionOn: aCanvas [
 	aCanvas heading  level: 3; with: 'Información sobre recaudación'.
-	aCanvas label: 'Objetivo a recaudar: ', self model objetivoPozo asString.
+	aCanvas label: 'Objetivo a recaudar: ', self model pozoComun objetivoPozo asString.
 	aCanvas break.
-	aCanvas label: 'Recaudacion hasta el momento: ', self model recaudacion asString
+	aCanvas label: 'Recaudacion hasta el momento: ', self model pozoComun recaudacion asString.
+	aCanvas break. aCanvas break.
+	aCanvas anchor 
+      callback: [ self resetCollection ];
+      with: [ aCanvas button: 'Resetear pozo en común'].
 	
 ]
 
@@ -160,7 +151,7 @@ CoordinatorHomeComponent >> renderViewAllDonation: aCanvas [
 
 { #category : #initialization }
 CoordinatorHomeComponent >> resetCollection [
-	self model resetearPozoComun.
+	self model cerrarPozoComun.
 	
 ]
 

@@ -14,7 +14,7 @@ HomeComponent >> createNewOrganization [
 
 { #category : #'as yet unclassified' }
 HomeComponent >> donateCollection [
-	self model recibirColaboracion: (donation asNumber).
+	self model pozoComun recibirColaboracion: (donation asNumber).
 ]
 
 { #category : #'as yet unclassified' }
@@ -50,7 +50,7 @@ HomeComponent >> renderCollectionFormOn: aCanvas [
 	aCanvas heading  level: 2; with: 'Pozo común'. 
 	aCanvas label: '¿Realizar donación al Pozo Común?'.
 	aCanvas break.
-	aCanvas label: 'Objetivo a recaudar: ', self model objetivoPozo asString, ' ||| Recaudado: ', self model recaudacion asString.
+	aCanvas label: 'Objetivo a recaudar: ', self model pozoComun objetivoPozo asString, ' ||| Recaudado: ', self model pozoComun recaudacion asString.
 	aCanvas break. aCanvas break.
 	aCanvas form: [ 
 		aCanvas label: 'Monto a donar'.
@@ -85,7 +85,7 @@ HomeComponent >> renderContentOn: aCanvas [
 
 { #category : #'as yet unclassified' }
 HomeComponent >> renderDonateCollectionOn: aCanvas [
-	(self model pozoComun) 
+	(self model pozoComun pozoIncompleto) 
 		ifTrue: [  self renderCollectionFormOn: aCanvas. ]
 ]
 

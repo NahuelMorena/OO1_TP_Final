@@ -92,13 +92,12 @@ GrupoTest >> testBuscarDonantePorNumerodeDonante [
 ]
 
 { #category : #tests }
-GrupoTest >> testCargarMonto [
-	grupo cargarMonto: 300.
-	self assert: (grupo recaudacion) equals: 300.0.
-	grupo cargarMonto: 450.
-	self assert: (grupo recaudacion) equals: 750.0.
-	grupo resetearPozoComun. 
-	self assert: (grupo recaudacion) equals: 0.
+GrupoTest >> testPozoComunActivado [
+	self deny: grupo pozoComunActivado.
+	grupo solicitarColaboracionPozoComun: 3000.
+	self assert: grupo pozoComunActivado.
+	grupo cerrarPozoComun.
+	self deny: grupo pozoComunActivado.
 ]
 
 { #category : #tests }
@@ -122,25 +121,6 @@ GrupoTest >> testRealizarDonacion [
 	pagoEfectivo := TransfBancaria montoAPagar: 450.0.
 	grupo realizarDonacion: numDonante para: organizacion1 pago: pagoEfectivo paraEl: 12.
 	self assert: (organizacion1 donaciones size) equals: 3. 
-	
-]
-
-{ #category : #'as yet unclassified' }
-GrupoTest >> testRecibirColaboracion [
-	|montoObjetivo|
-	montoObjetivo := 4000.
-	grupo solicitarColaboracionPozoComun: montoObjetivo.
-	self assert: (grupo pozoComun).
-	self assert: (grupo objetivoPozo ) equals: 4000.
-	self assert: (grupo recaudacion) equals:0.
-	grupo recibirColaboracion: 2000.
-	self assert: (grupo pozoComun).
-	self assert: (grupo recaudacion) equals:2000.
-	grupo recibirColaboracion: 3000.
-	self deny: (grupo pozoComun).
-	self assert: (grupo recaudacion) equals:5000.
-	
-	
 	
 ]
 
@@ -172,4 +152,12 @@ GrupoTest >> testValidarAccesoUsuario [
 	userPrueba := grupo buscarDonantePorNumerodeDonante: numUsuario.
 	self assert: (grupo usuarios includes: userPrueba).
 	self assert: (grupo usuario: 'nahuel1@gmail.com' protegidoPor: 'contrPrueba') equals: userPrueba.
+]
+
+{ #category : #tests }
+GrupoTest >> testsolicitarColaboracionPozoComun [
+	self assert: grupo pozoComun isNil.
+	grupo solicitarColaboracionPozoComun: 3000.
+	self deny: grupo pozoComun isNil.
+
 ]

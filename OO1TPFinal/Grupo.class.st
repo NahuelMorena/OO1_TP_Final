@@ -6,8 +6,6 @@ Class {
 		'propuestas',
 		'coordinadores',
 		'pozoComun',
-		'recaudacion',
-		'objetivoPozo',
 		'usuarios'
 	],
 	#classInstVars : [
@@ -63,9 +61,9 @@ Grupo >> cargaDeDonante: unDonante [
 	self usuarios add: unDonante
 ]
 
-{ #category : #'as yet unclassified' }
-Grupo >> cargarMonto: unMonto [
-	^(recaudacion := recaudacion + unMonto).
+{ #category : #accessing }
+Grupo >> cerrarPozoComun [
+	pozoComun := nil.
 ]
 
 { #category : #'as yet unclassified' }
@@ -86,13 +84,6 @@ Grupo >> initialize [
 	organizaciones := Set new.
 	coordinadores := Set new. 
 	usuarios := Set new.
-	pozoComun := false.
-	recaudacion := 0
-]
-
-{ #category : #accessing }
-Grupo >> objetivoPozo [
-	^objetivoPozo.
 ]
 
 { #category : #initialization }
@@ -101,8 +92,15 @@ Grupo >> organizaciones [
 ]
 
 { #category : #accessing }
-Grupo >> pozoComun [
-	^pozoComun.
+Grupo >> pozoComun [ 
+	^pozoComun
+]
+
+{ #category : #accessing }
+Grupo >> pozoComunActivado [
+	(pozoComun) 
+		ifNotNil: [ ^true ].
+		^false.
 ]
 
 { #category : #initialization }
@@ -115,28 +113,9 @@ Grupo >> realizarDonacion: nroDonante para: unaOrganizacion pago: unPago paraEl:
 	unaOrganizacion recibirDonacion: (Donacion mesAPagar: unMes pago: unPago numDonante: nroDonante).
 ]
 
-{ #category : #accessing }
-Grupo >> recaudacion [
-	^recaudacion.
-]
-
-{ #category : #'as yet unclassified' }
-Grupo >> recibirColaboracion: unMonto [
-	((self cargarMonto: unMonto) >= self objetivoPozo asNumber) ifTrue: [ pozoComun := false ]
-]
-
-{ #category : #accessing }
-Grupo >> resetearPozoComun [
-	objetivoPozo := 0.
-	recaudacion := 0
-	
-]
-
 { #category : #initialization }
-Grupo >> solicitarColaboracionPozoComun: montoObjetivo [
-	pozoComun:= true.
-	objetivoPozo := montoObjetivo.
-	recaudacion := 0
+Grupo >> solicitarColaboracionPozoComun: unMontoObjetivo [
+	pozoComun:= (PozoComun objetivoPozo: unMontoObjetivo).
 ]
 
 { #category : #'as yet unclassified' }
