@@ -137,6 +137,7 @@ OrganizacionTest >> testDireccion [
 { #category : #tests }
 OrganizacionTest >> testDonaciones [
 	self deny: (organizacion donaciones) isEmpty.
+	self assert: (organizacion donaciones size) equals: 4.
 	organizacion donaciones removeAll.
 	self assert: (organizacion donaciones) isEmpty.
 	
@@ -147,6 +148,7 @@ OrganizacionTest >> testDonaciones [
 { #category : #tests }
 OrganizacionTest >> testIntegrantes [
 	self deny: (organizacion integrantes) isEmpty.
+	self assert: (organizacion integrantes size) equals: 2.
 	organizacion integrantes removeAll.
 	self assert: (organizacion integrantes) isEmpty.
 	

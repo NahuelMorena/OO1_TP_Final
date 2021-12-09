@@ -77,9 +77,9 @@ GrupoTest >> testAceptarPropuestaDeOrganizacion [
 
 { #category : #tests }
 GrupoTest >> testAltaDonante [
-	self assert: (grupo usuarios) isEmpty.
+	self assert: (grupo usuarios size) equals: 1.
 	grupo altaDonante: 'unUsuario' dni: 22223312 telefono: 2345123454 email: 'unUsuario@gmail.com' legajo: 653451 contraseña: 'unaContraseña'.
-	self assert: (grupo usuarios) isNotEmpty.
+	self assert: (grupo usuarios size) equals: 2.
 	
 	
 ]
@@ -100,11 +100,11 @@ GrupoTest >> testBuscarDonantePorNumerodeDonante [
 
 { #category : #tests }
 GrupoTest >> testCerrarPozoComun [
-	self assert: grupo pozoComun isNil.
+	self assert: (grupo pozoComun) isNil.
 	grupo solicitarColaboracionPozoComun: 3000.
-	self deny: grupo pozoComun isNil.
+	self deny: (grupo pozoComun) isNil.
 	grupo cerrarPozoComun.
-	self assert: grupo pozoComun isNil.
+	self assert: (grupo pozoComun) isNil.
 
 ]
 
@@ -151,27 +151,27 @@ GrupoTest >> testPropuestas [
 
 { #category : #tests }
 GrupoTest >> testRealizarDonacion [
- 	|pagoEfectivo|
+ 	|pago|
 	organizacion1 agregarIntegrante: (grupo buscarDonantePorNumerodeDonante: numUsuarioPrueba).
-	pagoEfectivo := Efectivo montoAPagar: 400.0.
-	grupo realizarDonacion: numUsuarioPrueba para: organizacion1 pago: pagoEfectivo paraEl: 12.
+	pago := Efectivo montoAPagar: 400.0.
+	grupo realizarDonacion: numUsuarioPrueba para: organizacion1 pago: pago paraEl: 12.
 	self assert: (organizacion1 donaciones size) equals: 1. 
-	pagoEfectivo := PagoFacil montoAPagar: 500.0.
-	grupo realizarDonacion: numUsuarioPrueba para: organizacion1 pago: pagoEfectivo paraEl: 12.
+	pago := PagoFacil montoAPagar: 500.0.
+	grupo realizarDonacion: numUsuarioPrueba para: organizacion1 pago: pago paraEl: 12.
 	self assert: (organizacion1 donaciones size) equals: 2. 
-	pagoEfectivo := TransfBancaria montoAPagar: 450.0.
-	grupo realizarDonacion: numUsuarioPrueba para: organizacion1 pago: pagoEfectivo paraEl: 12.
+	pago := TransfBancaria montoAPagar: 450.0.
+	grupo realizarDonacion: numUsuarioPrueba para: organizacion1 pago: pago paraEl: 12.
 	self assert: (organizacion1 donaciones size) equals: 3. 
 	
 ]
 
 { #category : #tests }
 GrupoTest >> testUsuarios [
-	self assert: (grupo usuarios) isEmpty.
-	grupo cargaDeDonante: user1.
 	self assert: (grupo usuarios size) equals: 1.
-	grupo cargaDeDonante: user2.
+	grupo cargaDeDonante: user1.
 	self assert: (grupo usuarios size) equals: 2.
+	grupo cargaDeDonante: user2.
+	self assert: (grupo usuarios size) equals: 3.
 ]
 
 { #category : #tests }

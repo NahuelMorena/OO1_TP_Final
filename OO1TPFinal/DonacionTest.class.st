@@ -15,8 +15,8 @@ Class {
 { #category : #'as yet unclassified' }
 DonacionTest >> altaDonacionesTest [
 	donacionEfectivo := Donacion mesAPagar: 6 pago: pagoEfectivo numDonante: 1001.
-	donacionPagoFacil := Donacion mesAPagar: 6 pago: pagoDePagoFacil numDonante: 1001. 
-   donacionTransfBancaria := Donacion mesAPagar: 6 pago: pagoTransfBancaria numDonante: 1001.
+	donacionPagoFacil := Donacion mesAPagar: 6 pago: pagoDePagoFacil numDonante: 1002. 
+   donacionTransfBancaria := Donacion mesAPagar: 6 pago: pagoTransfBancaria numDonante: 1003.
 ]
 
 { #category : #'as yet unclassified' }
@@ -42,8 +42,8 @@ DonacionTest >> testActualYear [
 { #category : #tests }
 DonacionTest >> testDonador [
 	self assert: (donacionEfectivo donador) equals: 1001.
-	self assert: (donacionPagoFacil donador) equals: 1001.
-	self assert: (donacionTransfBancaria donador) equals: 1001.
+	self assert: (donacionPagoFacil donador) equals: 1002.
+	self assert: (donacionTransfBancaria donador) equals: 1003.
 	
 	
 ]
