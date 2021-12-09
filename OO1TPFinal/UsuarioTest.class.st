@@ -20,10 +20,19 @@ UsuarioTest >> setUp [
 ]
 
 { #category : #tests }
+UsuarioTest >> testContraseña [
+	self assert: user contraseña equals: 'unaContraseña'.
+	
+]
+
+{ #category : #tests }
 UsuarioTest >> testDni [
 	self assert: user dni equals: 22222222.
-	user dni: 55555555.
-	self assert: user dni equals: 55555555.
+]
+
+{ #category : #tests }
+UsuarioTest >> testEmail [
+	self assert: user email equals: 'unEmail@gmail.com'.
 ]
 
 { #category : #tests }
@@ -38,22 +47,16 @@ UsuarioTest >> testIdentificar [
 { #category : #tests }
 UsuarioTest >> testLegajo [
 	self assert: user legajo equals: 123234.
-	user legajo: 123333.
-	self assert: user legajo equals: 123333.
 ]
 
 { #category : #tests }
-UsuarioTest >> testNombre [
+UsuarioTest >> testName [
 	self assert: user name equals: 'unNombre'.
-	user nombre: 'otroNombre'.
-	self assert: user name equals: 'otroNombre'.
 ]
 
 { #category : #tests }
 UsuarioTest >> testTelefono [
 	self assert: user telefono equals: 221345465.
-	user telefono: 221444444.
-	self assert: user telefono equals: 221444444.
 ]
 
 { #category : #tests }

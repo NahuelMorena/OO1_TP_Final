@@ -50,12 +50,6 @@ Usuario >> dni [
 ]
 
 { #category : #accessing }
-Usuario >> dni: unDni [
-	dni:= unDni
-
-]
-
-{ #category : #accessing }
 Usuario >> email [
 	^email
 
@@ -72,19 +66,8 @@ Usuario >> legajo [
 ]
 
 { #category : #accessing }
-Usuario >> legajo: unLegajo [
-	legajo:= unLegajo
-]
-
-{ #category : #accessing }
 Usuario >> name [
 	^nombre
-]
-
-{ #category : #accessing }
-Usuario >> nombre: unNombre [
-	nombre := unNombre
-
 ]
 
 { #category : #'as yet unclassified' }
@@ -106,11 +89,6 @@ Usuario >> obtenerIdentificacion [
 { #category : #accessing }
 Usuario >> telefono [ 
 	^telefono
-]
-
-{ #category : #accessing }
-Usuario >> telefono: unTelefono [
-	telefono := unTelefono
 ]
 
 { #category : #'as yet unclassified' }

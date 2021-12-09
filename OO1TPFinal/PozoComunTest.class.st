@@ -14,17 +14,28 @@ PozoComunTest >> setUp [
 ]
 
 { #category : #tests }
-PozoComunTest >> testCargarMonto [
-	pozo cargarMonto: 300.
-	self assert: (pozo recaudacion) equals: 300.0.
-	pozo cargarMonto: 450.
-	self assert: (pozo recaudacion) equals: 750.0.
+PozoComunTest >> testObjetivoPozo [
+	self assert: (pozo objetivoPozo) equals: 4000.
+	
+]
+
+{ #category : #tests }
+PozoComunTest >> testPozoIncompleto [
+	self assert: (pozo pozoIncompleto ).
+	pozo recibirColaboracion: 5000.
+	self deny: (pozo pozoIncompleto).
+]
+
+{ #category : #tests }
+PozoComunTest >> testRecaudacion [
+	self assert: (pozo recaudacion) equals: 0.
+	
 ]
 
 { #category : #tests }
 PozoComunTest >> testRecibirColaboracion [
 	self assert: (pozo objetivoPozo ) equals: 4000.
-	self assert: (pozo recaudacion) equals:0.
+	self assert: (pozo recaudacion) equals: 0.
 	pozo recibirColaboracion: 2000.
 	self assert: (pozo recaudacion) equals:2000.
 	pozo recibirColaboracion: 3000.

@@ -56,7 +56,7 @@ CoordinatorProfileComponent >> renderContentOn: aCanvas [
 { #category : #accessing }
 CoordinatorProfileComponent >> renderDonationInformation: aCanvas of: aDonation [
 	aCanvas text: 'Donador: ', (self user) name, ' ||| '.
-	aCanvas text: 'Monto: ', ((aDonation obtenerPagoSinComision) asString), ' ||| '.
+	aCanvas text: 'Monto: ', ((aDonation pago obtenerPagoSinComision) asString), ' ||| '.
 	aCanvas text: 'Mes asignado: ', aDonation mesDelPago, ' ||| '.
 	aCanvas break.
 	

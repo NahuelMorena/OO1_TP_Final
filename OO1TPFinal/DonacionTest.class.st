@@ -67,3 +67,24 @@ DonacionTest >> testMesDelPago [
 	
 	
 ]
+
+{ #category : #tests }
+DonacionTest >> testMontoDeDonacionesEntreFechas [ 
+	|fecha1 fecha2|
+	fecha1 := Date newDay: 26 month: 8 year: 2020.
+	fecha2 := Date newDay: 31 month: 1 year: 2021.
+	self assert: (donacionEfectivo montoDeDonacionesEntre: fecha1 y: fecha2) equals: 0. 
+	fecha1 := Date newDay: 26 month: 8 year: 2021.
+	fecha2 := Date newDay: 31 month: 1 year: 2022.
+	self assert: (donacionEfectivo montoDeDonacionesEntre: fecha1 y: fecha2) equals: 1000. 
+]
+
+{ #category : #tests }
+DonacionTest >> testPago [
+	self assert: (donacionEfectivo pago) equals: pagoEfectivo.
+	self assert: (donacionPagoFacil pago) equals: pagoDePagoFacil.
+	self assert: (donacionTransfBancaria pago) equals: pagoTransfBancaria
+	
+	
+	
+]
